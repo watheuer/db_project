@@ -17,10 +17,11 @@ from django.conf.urls import patterns, include, url
 from django.conf import settings
 from django.contrib import admin
 
-urlpatterns = [
+urlpatterns = patterns('',
     url(r'^admin/', admin.site.urls),
-]
-
-urlpatterns += patterns('',url(r'^(?P<path>.*)$', 'django.views.static.serve', {
+    url(r'^champions/', include('champion_picker.urls')),
+    url(r'^(?P<path>.*)$', 'django.views.static.serve', {
             'document_root': settings.MEDIA_ROOT,
-}))
+        }
+    ),
+)
