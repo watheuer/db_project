@@ -19,7 +19,7 @@ from django.contrib import admin
 
 urlpatterns = patterns('',
     url(r'^admin/', admin.site.urls),
-    url(r'^champions/', include('champion_picker.urls')),
+    url(r'^champions', include('champion_picker.urls')),
     url(r'^(?P<path>.*)$', 'django.views.static.serve', {
             'document_root': settings.MEDIA_ROOT,
         }
