@@ -18,17 +18,20 @@ class ChampionViewSet(viewsets.ViewSet):
     queryset = Champion.objects.all()
 
     def list(self, request):
-        serializer = ChampionSerializer(self.queryset, many=True)
+        queryset = self.queryset.all()
+        serializer = ChampionSerializer(queryset, many=True)
         return Response(serializer.data)
 
     def retrieve(self, request, pk=None):
-        champ = get_object_or_404(self.queryset, pk=pk)
+        queryset = self.queryset.all()
+        champ = get_object_or_404(queryset, pk=pk)
         serializer = ChampionSerializer(champ)
         return Response(serializer.data)
 
     @detail_route()
     def roles(self, request, pk=None):
-        champ = get_object_or_404(self.queryset, pk=pk)
+        queryset = self.queryset.all()
+        champ = get_object_or_404(queryset, pk=pk)
         roles = champ.role_set.all()
         serializer = RoleSerializer(roles, many=True)
         return Response(serializer.data)
@@ -41,11 +44,13 @@ class RoleViewSet(viewsets.ViewSet):
     queryset = Role.objects.all()
 
     def list(self, request):
-        serializer = RoleSerializer(self.queryset, many=True)
+        queryset = self.queryset.all()
+        serializer = RoleSerializer(queryset, many=True)
         return Response(serializer.data)
 
     def retrieve(self, request, pk=None):
-        role = get_object_or_404(self.queryset, pk=pk)
+        queryset = self.queryset.all()
+        role = get_object_or_404(queryset, pk=pk)
         serializer = RoleSerializer(role)
         return Response(serializer.data)
 
@@ -57,11 +62,13 @@ class ItemViewSet(viewsets.ViewSet):
     queryset = Item.objects.all()
 
     def list(self, request):
-        serializer = ItemSerializer(self.queryset, many=True)
+        queryset = self.queryset.all()
+        serializer = ItemSerializer(queryset, many=True)
         return Response(serializer.data)
 
     def retrieve(self, request, pk=None):
-        item = get_object_or_404(self.queryset, pk=pk)
+        queryset = self.queryset.all()
+        item = get_object_or_404(queryset, pk=pk)
         serializer = ItemSerializer(item)
         return Response(serializer.data)
 
@@ -73,11 +80,13 @@ class BuildViewSet(viewsets.ViewSet):
     queryset = ItemBuild.objects.all()
 
     def list(self, request):
-        serializer = BuildSerializer(self.queryset, many=True)
+        queryset = self.queryset.all()
+        serializer = BuildSerializer(queryset, many=True)
         return Response(serializer.data)
 
     def retrieve(self, request, pk=None):
-        build = get_object_or_404(self.queryset, pk=pk)
+        queryset = self.queryset.all()
+        build = get_object_or_404(queryset, pk=pk)
         serializer = BuildSerializer(build)
         return Response(serializer.data)
 
