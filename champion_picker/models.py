@@ -16,7 +16,6 @@ class Champion(models.Model):
 
 class Role(models.Model):
     name = models.CharField(max_length=32)
-    lane = models.CharField(max_length=32, default='')
     champion = models.ForeignKey(Champion, null=True, on_delete=models.SET_NULL)
     win_rate = models.DecimalField(max_digits=30, decimal_places=2)
     kills = models.IntegerField()
@@ -25,7 +24,7 @@ class Role(models.Model):
     minions_killed = models.IntegerField()
 
     def __str__(self):
-        return "[%s] %s %s" % (self.name, self.champion, self.lane)
+        return "[%s] %s" % (self.name, self.champion)
 
 class WinRate(models.Model):
     champ1 = models.ForeignKey(Role, related_name='champ1')
