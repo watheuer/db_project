@@ -3,6 +3,7 @@ This project allows players to create the best possible team using statistics fr
 
 ## API Endpoints
 
+### Champions
 ```
 GET /api/champions/
 ```
@@ -18,16 +19,7 @@ GET /api/champions/{id}/roles/
 ```
 Get all roles associated with the specified champion id.
 
-```
-GET /api/items/
-```
-List all items.
-
-```
-GET /api/items/{id}/
-```
-Get stats for the specified item.
-
+### Roles
 ```
 GET /api/roles/
 ```
@@ -37,6 +29,17 @@ Get all champions' roles and associated stats.
 GET /api/roles/{id}/
 ```
 Get a specific role.
+
+### Items
+```
+GET /api/items/
+```
+List all items.
+
+```
+GET /api/items/{id}/
+```
+Get stats for the specified item.
 
 ```
 GET /api/builds/
