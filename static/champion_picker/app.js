@@ -19,6 +19,21 @@ app.factory('championFactory', ['$http', function($http) {
   return factory;
 }]);
 
+app.factory('roleFactory', ['$http', function($http) {
+  var urlBase = '/api/roles/';
+  var factory = {};
+
+  factory.getRoles = function() {
+    return $http.get(urlBase);
+  };
+
+  factory.getRole = function(id) {
+    return $http.get(urlBase + id + '/');
+  };
+
+  return factory;
+}]);
+
 app.controller('champInfoCtrl', ['$scope', 'championFactory', function($scope, championFactory) {
   getChampions();
   $scope.selected = '';
