@@ -1,15 +1,19 @@
-from django.shortcuts import render, get_object_or_404
-from django.http import JsonResponse
+from django.shortcuts import get_object_or_404
+from django.http import JsonResponse, HttpResponse
 from models import Champion, Role, WinRate, Item, ItemBuild
 from serializers import ChampionSerializer, RoleSerializer, ItemSerializer, BuildSerializer
 from rest_framework.response import Response
 from rest_framework import viewsets
 from rest_framework.decorators import detail_route, list_route
-
+import os
 
 def index(request):
-    context = {}
-    return render(request, 'champion_picker/index.html', context)
+    content = ''
+
+    # super hacky and I'm sorry. Fixes problems with Django + Angular templates
+    with open(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'templates/champion_picker/index.html')) as f:
+        content = f.read()
+    return HttpResponse(content);
 
 class ChampionViewSet(viewsets.ViewSet):
     """

@@ -1,0 +1,10 @@
+{
+  "libs": [],
+  "loadEagerly": [
+    "static/champion_picker/app.js"
+  ],
+  "plugins": {
+    "angular": "./static/champion_picker/angular.js"
+  }
+}
+

@@ -1,0 +1,10 @@
+.champion {
+  display: inline-block;
+  width: 100px;
+  height: 60px;
+  cursor: pointer;
+} 
+
+.champion:hover {
+  background-color: gray;
+}

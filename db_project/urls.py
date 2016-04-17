@@ -20,8 +20,4 @@ from django.contrib import admin
 urlpatterns = patterns('',
     url(r'^admin/', admin.site.urls),
     url(r'^', include('champion_picker.urls')),
-    url(r'^(?P<path>.*)$', 'django.views.static.serve', {
-            'document_root': settings.STATIC_ROOT,
-        }
-    ),
 )
