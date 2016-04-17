@@ -13,8 +13,6 @@ import csv
 riottoken = '180d011c-06d3-4722-9eef-3a3de8d6bc83' #My api token for riotgames
 ggtoken = 'ad7c8fe0625bea8067333db89d12dedc' #My api token for champion.gg
 folderpath = '/CSV Files' #Local folder for csv files
-csvfile = open(getcwd()+folderpath+'/champion.csv', 'wb')
-wr = csv.writer(csvfile, quoting=csv.QUOTE_ALL)
 riotroot = 'https://na.api.pvp.net/api'
 ggroot = 'http://api.champion.gg'
 
@@ -32,6 +30,9 @@ urlimages = '/lol/static-data/NA/v1.2/champion'
 
 if not path.exists(getcwd()+folderpath):
     makedirs(getcwd()+folderpath)
+
+csvfile = open(getcwd()+folderpath+'/champion.csv', 'wb')
+wr = csv.writer(csvfile, quoting=csv.QUOTE_ALL)
 
 tothecsv = [[]]
 for item in fieldskillnames:
