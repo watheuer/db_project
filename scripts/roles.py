@@ -13,8 +13,6 @@ import csv
 
 ggtoken = 'ad7c8fe0625bea8067333db89d12dedc' #My api token for champion.gg
 folderpath = '/CSV Files' #Local folder for csv files
-csvfile = open(getcwd()+folderpath+'/role.csv', 'wb')
-wr = csv.writer(csvfile, quoting=csv.QUOTE_ALL)
 ggroot = 'http://api.champion.gg'
 
 #Stuff to get names to iterate over.
@@ -28,6 +26,9 @@ fieldstatnames = ['lane', 'win_rate', 'kills', 'deaths', 'assists', 'minions_kil
 
 if not path.exists(getcwd()+folderpath):
     makedirs(getcwd()+folderpath)
+
+csvfile = open(getcwd()+folderpath+'/role.csv', 'wb')
+wr = csv.writer(csvfile, quoting=csv.QUOTE_ALL)
 
 tothecsv = [['Champion']]
 for item in fieldstatnames:
