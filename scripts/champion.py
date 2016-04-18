@@ -1,5 +1,5 @@
 #For champion.csv, creates a csv with:
-#Champion, image_location (doesn't work now, don't know where images are stored in the api, if they are), q, w, e, r skills
+#Champion, image_location, q, w, e, r skills
 
 
 #Doing that import thing. This is the library for requesting the stuff, opening the response
