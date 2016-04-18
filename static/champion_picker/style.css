@@ -1,10 +1,18 @@
 .champion {
   display: inline-block;
   width: 100px;
-  height: 60px;
+  height: 150px;
   cursor: pointer;
+  padding: 5px;
+  margin: 3px;
+  border: 1px solid gray;
+  border-radius: 5px;
 } 
 
 .champion:hover {
   background-color: gray;
+}
+
+.role {
+  margin-bottom: 10px;
 }

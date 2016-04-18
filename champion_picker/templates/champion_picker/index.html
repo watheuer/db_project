@@ -3,21 +3,42 @@
     <title>Test</title>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular.min.js"></script>
     <script src="/static/champion_picker/app.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" type="text/css">
     <link rel="stylesheet" href="/static/champion_picker/style.css" type="text/css">
   </head>
   <body ng-app="app" ng-controller="champInfoCtrl">
-    <h3>Select a champion:</h3>
-    <div class="champion" ng-repeat="champion in champions" ng-click="selectChampion(champion)">
-      {{ champion.name }}
+    <nav class="navbar navbar-default">
+      <div class="container">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="#">League of Legends Champion Picker</a>
+        </div>
+        <ul class="nav navbar-nav">
+          <li class="active"><a href="#">Champions</a></li>
+          <li><a href="#">Roles</a></li> 
+          <li><a href="#">Team Builder</a></li>
+        </ul> 
+      </div>
+    </nav>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-9">
+          <h3 class="page-header">Select a champion:</h3>
+          <div class="champion" ng-repeat="champion in champions" ng-click="selectChampion(champion)">
+            {{ champion.name }}
+          </div>
+        </div>
+        <div class="col-md-3">
+          <h3 class="page-header">Champion roles:</h3>
+          <div class="role" ng-repeat="role in roles">
+            <div>Role: {{ role.name }}</div>
+            <div>Win rate: {{ role.win_rate }}%</div>
+            <div>Kills: {{ role.kills }}</div>
+            <div>Deaths: {{ role.deaths }}</div>
+            <div>Assists: {{ role.assists }}</div>
+            <div>Minions killed: {{ role.minions_killed }}</div>
+          </div>
+        </div>
+      </div>
     </div>
-    <h3>Champion roles:</h3>
-    <div class=role" ng-repeat="role in roles">
-      Role: {{ role.name }}
-      Win rate: {{ role.win_rate }}%
-      Kills: {{ role.kills }}
-      Deaths: {{ role.deaths }}
-      Assists: {{ role.assists }}
-      Minions killed: {{ role.minions_killed }}
-    <div>
   </body>
 </html>
