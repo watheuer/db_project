@@ -15,4 +15,11 @@
 
 .role {
   margin-bottom: 10px;
+  display: inline-block;
+  width: 160px;
+}
+
+.champions {
+  max-height: 800px;
+  overflow-y: scroll;
 }

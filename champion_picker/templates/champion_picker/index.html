@@ -21,13 +21,7 @@
     </nav>
     <div class="container">
       <div class="row">
-        <div class="col-md-9">
-          <h3 class="page-header">Select a champion:</h3>
-          <div class="champion" ng-repeat="champion in champions" ng-click="selectChampion(champion)">
-            {{ champion.name }}
-          </div>
-        </div>
-        <div class="col-md-3">
+        <div class="col-md-3 roles">
           <h3 class="page-header">Champion roles:</h3>
           <div class="role" ng-repeat="role in roles">
             <div>Role: {{ role.name }}</div>
@@ -36,6 +30,14 @@
             <div>Deaths: {{ role.deaths }}</div>
             <div>Assists: {{ role.assists }}</div>
             <div>Minions killed: {{ role.minions_killed }}</div>
+          </div>
+        </div>
+        <div class="col-md-9">
+          <h3 class="page-header">Select a champion:</h3>
+          <div class="champions">
+            <div class="champion" ng-repeat="champion in champions" ng-click="selectChampion(champion)">
+              {{ champion.name }}
+            </div>
           </div>
         </div>
       </div>

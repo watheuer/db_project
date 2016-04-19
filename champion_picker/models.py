@@ -4,7 +4,7 @@ from django.db import models
 
 # from champion.gg: /champion/:name/general?api_key=<KEY>
 class Champion(models.Model):
-    name = models.CharField(max_length=32)
+    name = models.CharField(max_length=32, primary_key=True)
     portrait_image = models.ImageField(upload_to='champ_images', blank=True, null=True)
     q_skill = models.CharField(max_length=32)
     w_skill = models.CharField(max_length=32)

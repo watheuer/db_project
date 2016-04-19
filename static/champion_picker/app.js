@@ -41,7 +41,7 @@ app.controller('champInfoCtrl', ['$scope', 'championFactory', function($scope, c
   $scope.selectChampion = function(champion) {
     $scope.selected = champion;
     if ($scope.selected !== '') {
-      getRoles($scope.selected.id);
+      getRoles($scope.selected.name);
     }
   };
 
@@ -55,8 +55,8 @@ app.controller('champInfoCtrl', ['$scope', 'championFactory', function($scope, c
       });
   }
 
-  function getRoles(id) {
-    championFactory.getRoles(id)
+  function getRoles(name) {
+    championFactory.getRoles(name)
       .then(function(res) {
         $scope.roles = res.data;
         console.log($scope.roles);
