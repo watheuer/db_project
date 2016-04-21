@@ -47,4 +47,4 @@ class ItemBuild(models.Model):
     items = models.ManyToManyField(Item, related_name='items')
 
     def __str__(self):
-        return "[%s] %s" % (self.champion, self.name)
+        return "[%s] %s" % (self.role, self.name)
