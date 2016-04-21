@@ -27,12 +27,12 @@ class Role(models.Model):
         return "[%s] %s" % (self.name, self.champion)
 
 class WinRate(models.Model):
-    champ1 = models.ForeignKey(Role, related_name='champ1')
-    champ2 = models.ForeignKey(Role, related_name='champ2')
+    role1 = models.ForeignKey(Role, related_name='role1')
+    role2 = models.ForeignKey(Role, related_name='role2')
     win_rate = models.DecimalField(max_digits=30, decimal_places=2)
 
     def __str__(self):
-        return "%s %s" % (self.champ1, self.champ2)
+        return "%s %s" % (self.role1, self.role2)
 
 class Item(models.Model):
     name = models.CharField(max_length=48)
@@ -43,7 +43,7 @@ class Item(models.Model):
 
 class ItemBuild(models.Model):
     name = models.CharField(max_length=48)
-    champion = models.ForeignKey(Champion)
+    role = models.ForeignKey(Role)
     items = models.ManyToManyField(Item, related_name='items')
 
     def __str__(self):
