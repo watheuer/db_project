@@ -1,4 +1,5 @@
-from django.conf.urls import url
+from db_project import settings
+from django.conf.urls import url, patterns
 from rest_framework import routers
 
 from . import views
@@ -14,3 +15,8 @@ urlpatterns = [
 ]
 
 urlpatterns += router.urls
+
+
+urlpatterns += patterns('',url(r'^(?P<path>.*)$', 'django.views.static.serve', {
+    'document_root': settings.MEDIA_ROOT,
+}))
