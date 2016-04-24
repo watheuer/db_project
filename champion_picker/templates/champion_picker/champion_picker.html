@@ -23,106 +23,57 @@
       <div class="row">
         <div class="col-md-6">
         <h3 class="page-header"> Ally Bans</h3>
-        <form>
-          <fieldset>
-            <p>
-               <label> Select a champion to ban! </label>
-               <select id = "myList">
-                 <option value = "1">ekko</option>
-                 <option value = "2">ekko</option>
-                 <option value = "3">not ekko? WRONG</option>
-                 <option value = "4">ekko</option>
-               </select>
-            </p>
-          </fieldset>
-        </form>
-        <form>
-          <fieldset>
-            <p>
-               <label> Select a champion to ban! </label>
-               <select id = "myList">
-                 <option value = "1">ekko</option>
-                 <option value = "2">ekko</option>
-                 <option value = "3">not ekko? WRONG</option>
-                 <option value = "4">ekko</option>
-               </select>
-            </p>
-          </fieldset>
-        </form>
-        <form>
-          <fieldset>
-            <p>
-               <label> Select a champion to ban! </label>
-               <select id = "myList">
-                 <option value = "1">ekko</option>
-                 <option value = "2">ekko</option>
-                 <option value = "3">not ekko? WRONG</option>
-                 <option value = "4">ekko</option>
-               </select>
-            </p>
-          </fieldset>
-        </form>
+          <div class="champions">
+            <div class="champion"  ng-click="selectChampion(champion)">
+                <div style="text-align: left">{{ champion.name }}</div>
+                <img src="{{ champion.portrait_image }}" width="10%" height="5%">
+            </div>
+          </div>
+          <div class="champions">
+            <div class="champion"  ng-click="selectChampion(champion)">
+                <div style="text-align: left">{{ champion.name }}</div>
+                <img src="{{ champion.portrait_image }}" width="10%" height="5%">
+            </div>
+          </div>
+          <div class="champions">
+            <div class="champion"  ng-click="selectChampion(champion)">
+                <div style="text-align: left">{{ champion.name }}</div>
+                <img src="{{ champion.portrait_image }}" width="10%" height="5%">
+            </div>
+          </div>
         </div>
         <div class="col-md-6">
         <h3 class="page-header"> Opponent Bans</h3>
-        <form>
-          <fieldset>
-            <p>
-               <label> Select a champion to ban! </label>
-               <select id = "myList">
-                 <option value = "1">ekko</option>
-                 <option value = "2">ekko</option>
-                 <option value = "3">not ekko? WRONG</option>
-                 <option value = "4">ekko</option>
-               </select>
-            </p>
-          </fieldset>
-        </form>
-        <form>
-          <fieldset>
-            <p>
-               <label> Select a champion to ban! </label>
-               <select id = "myList">
-                 <option value = "1">ekko</option>
-                 <option value = "2">ekko</option>
-                 <option value = "3">not ekko? WRONG</option>
-                 <option value = "4">ekko</option>
-               </select>
-            </p>
-          </fieldset>
-        </form>
-        <form>
-          <fieldset>
-            <p>
-               <label> Select a champion to ban! </label>
-               <select id = "myList">
-                 <option value = "1">ekko</option>
-                 <option value = "2">ekko</option>
-                 <option value = "3">not ekko? WRONG</option>
-                 <option value = "4">ekko</option>
-               </select>
-            </p>
-          </fieldset>
-        </form>
+          <div class="champions">
+            <div class="champion"  ng-click="selectChampion(champion)">
+                <div style="text-align: left">{{ champion.name }}</div>
+                <img src="{{ champion.portrait_image }}" width="10%" height="5%">
+            </div>
+          </div>
+          <div class="champions">
+            <div class="champion"  ng-click="selectChampion(champion)">
+                <div style="text-align: left">{{ champion.name }}</div>
+                <img src="{{ champion.portrait_image }}" width="10%" height="5%">
+            </div>
+          </div>
+          <div class="champions">
+            <div class="champion"  ng-click="selectChampion(champion)">
+                <div style="text-align: left">{{ champion.name }}</div>
+                <img src="{{ champion.portrait_image }}" width="10%" height="5%">
+            </div>
+          </div>
         </div>
       </div>
       <div class="row">
         <div class="col-md-6">
         <h3 class="page-header"> Ally Champions</h3>
 	  <div class="col-md-8">
-            <form>
-            <fieldset>
-              <p>
-               <label> Select a champion! </label>
-               <select id = "myList">
-                 <option value = "1">ekko</option>
-                 <option value = "2">ekko</option>
-                 <option value = "3">ekko</option>
-                 <option value = "4">ekko</option>
-               </select>
-              </p>
-            </fieldset>
-            </form>
+          <div class="champions">
+            <div class="champion"  ng-click="selectChampion(champion)">
+                <div style="text-align: left">{{ champion.name }}</div>
+                <img src="{{ champion.portrait_image }}" width="10%" height="5%">
+            </div>
+          </div>
           </div>
 	  <div class="col-md-4">
             <form>
@@ -141,19 +92,12 @@
             </form>
           </div>
 	  <div class="col-md-8">
-            <form>
-            <fieldset>
-              <p>
-               <label> Select a champion! </label>
-               <select id = "myList">
-                 <option value = "1">ekko</option>
-                 <option value = "2">ekko</option>
-                 <option value = "3">ekko</option>
-                 <option value = "4">ekko</option>
-               </select>
-              </p>
-            </fieldset>
-            </form>
+          <div class="champions">
+            <div class="champion"  ng-click="selectChampion(champion)">
+                <div style="text-align: left">{{ champion.name }}</div>
+                <img src="{{ champion.portrait_image }}" width="10%" height="5%">
+            </div>
+          </div>
           </div>
 	  <div class="col-md-4">
             <form>
@@ -172,19 +116,12 @@
             </form>
           </div>
 	  <div class="col-md-8">
-            <form>
-            <fieldset>
-              <p>
-               <label> Select a champion! </label>
-               <select id = "myList">
-                 <option value = "1">ekko</option>
-                 <option value = "2">ekko</option>
-                 <option value = "3">ekko</option>
-                 <option value = "4">ekko</option>
-               </select>
-              </p>
-            </fieldset>
-            </form>
+          <div class="champions">
+            <div class="champion"  ng-click="selectChampion(champion)">
+                <div style="text-align: left">{{ champion.name }}</div>
+                <img src="{{ champion.portrait_image }}" width="10%" height="5%">
+            </div>
+          </div>
           </div>
 	  <div class="col-md-4">
             <form>
@@ -203,19 +140,12 @@
             </form>
           </div>
 	  <div class="col-md-8">
-            <form>
-            <fieldset>
-              <p>
-               <label> Select a champion! </label>
-               <select id = "myList">
-                 <option value = "1">ekko</option>
-                 <option value = "2">ekko</option>
-                 <option value = "3">ekko</option>
-                 <option value = "4">ekko</option>
-               </select>
-              </p>
-            </fieldset>
-            </form>
+          <div class="champions">
+            <div class="champion"  ng-click="selectChampion(champion)">
+                <div style="text-align: left">{{ champion.name }}</div>
+                <img src="{{ champion.portrait_image }}" width="10%" height="5%">
+            </div>
+          </div>
           </div>
 	  <div class="col-md-4">
             <form>
@@ -234,19 +164,12 @@
             </form>
           </div>
 	  <div class="col-md-8">
-            <form>
-            <fieldset>
-              <p>
-               <label> Select a champion! </label>
-               <select id = "myList">
-                 <option value = "1">ekko</option>
-                 <option value = "2">ekko</option>
-                 <option value = "3">ekko</option>
-                 <option value = "4">ekko</option>
-               </select>
-              </p>
-            </fieldset>
-            </form>
+          <div class="champions">
+            <div class="champion"  ng-click="selectChampion(champion)">
+                <div style="text-align: left">{{ champion.name }}</div>
+                <img src="{{ champion.portrait_image }}" width="10%" height="5%">
+            </div>
+          </div>
           </div>
 	  <div class="col-md-4">
             <form>
@@ -269,19 +192,12 @@
         <div class="col-md-6">
         <h3 class="page-header"> Opponent Champions</h3>
  	  <div class="col-md-8">
-            <form>
-            <fieldset>
-              <p>
-               <label> Select a champion! </label>
-               <select id = "myList">
-                 <option value = "1">ekko</option>
-                 <option value = "2">ekko</option>
-                 <option value = "3">ekko</option>
-                 <option value = "4">ekko</option>
-               </select>
-              </p>
-            </fieldset>
-            </form>
+          <div class="champions">
+            <div class="champion"  ng-click="selectChampion(champion)">
+                <div style="text-align: left">{{ champion.name }}</div>
+                <img src="{{ champion.portrait_image }}" width="10%" height="5%">
+            </div>
+          </div>
           </div>
 	  <div class="col-md-4">
             <form>
@@ -300,19 +216,12 @@
             </form>
           </div>
 	  <div class="col-md-8">
-            <form>
-            <fieldset>
-              <p>
-               <label> Select a champion! </label>
-               <select id = "myList">
-                 <option value = "1">ekko</option>
-                 <option value = "2">ekko</option>
-                 <option value = "3">ekko</option>
-                 <option value = "4">ekko</option>
-               </select>
-              </p>
-            </fieldset>
-            </form>
+          <div class="champions">
+            <div class="champion"  ng-click="selectChampion(champion)">
+                <div style="text-align: left">{{ champion.name }}</div>
+                <img src="{{ champion.portrait_image }}" width="10%" height="5%">
+            </div>
+          </div>
           </div>
 	  <div class="col-md-4">
             <form>
@@ -331,19 +240,12 @@
             </form>
           </div>
 	  <div class="col-md-8">
-            <form>
-            <fieldset>
-              <p>
-               <label> Select a champion! </label>
-               <select id = "myList">
-                 <option value = "1">ekko</option>
-                 <option value = "2">ekko</option>
-                 <option value = "3">ekko</option>
-                 <option value = "4">ekko</option>
-               </select>
-              </p>
-            </fieldset>
-            </form>
+          <div class="champions">
+            <div class="champion"  ng-click="selectChampion(champion)">
+                <div style="text-align: left">{{ champion.name }}</div>
+                <img src="{{ champion.portrait_image }}" width="10%" height="5%">
+            </div>
+          </div>
           </div>
 	  <div class="col-md-4">
             <form>
@@ -362,19 +264,12 @@
             </form>
           </div>
 	  <div class="col-md-8">
-            <form>
-            <fieldset>
-              <p>
-               <label> Select a champion! </label>
-               <select id = "myList">
-                 <option value = "1">ekko</option>
-                 <option value = "2">ekko</option>
-                 <option value = "3">ekko</option>
-                 <option value = "4">ekko</option>
-               </select>
-              </p>
-            </fieldset>
-            </form>
+          <div class="champions">
+            <div class="champion"  ng-click="selectChampion(champion)">
+                <div style="text-align: left">{{ champion.name }}</div>
+                <img src="{{ champion.portrait_image }}" width="10%" height="5%">
+            </div>
+          </div>
           </div>
 	  <div class="col-md-4">
             <form>
@@ -393,19 +288,12 @@
             </form>
           </div>
 	  <div class="col-md-8">
-            <form>
-            <fieldset>
-              <p>
-               <label> Select a champion! </label>
-               <select id = "myList">
-                 <option value = "1">ekko</option>
-                 <option value = "2">ekko</option>
-                 <option value = "3">ekko</option>
-                 <option value = "4">ekko</option>
-               </select>
-              </p>
-            </fieldset>
-            </form>
+          <div class="champions">
+            <div class="champion"  ng-click="selectChampion(champion)">
+                <div style="text-align: left">{{ champion.name }}</div>
+                <img src="{{ champion.portrait_image }}" width="10%" height="5%">
+            </div>
+          </div>
           </div>
 	  <div class="col-md-4">
             <form>
