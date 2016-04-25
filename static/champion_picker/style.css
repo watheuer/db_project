@@ -5,9 +5,10 @@
   cursor: pointer;
   padding: 5px;
   margin: 3px;
-  border: 1px solid gray;
+  border: 1px solid white;
   border-radius: 5px;
-  color: blue;
+  background-color: gray;
+  color: white;
   font-family: Georgia, serif
 } 
 
@@ -23,22 +24,21 @@
 }
 
 .champion:hover {
-  background-color: gray;
-  color: white;
+  background-color: white;
+  color: black;
   width: 150px;
   height: 175px;
-}
-
-.champion:selected {
-  background-color: gray;
-  color: red;
 }
 
 .role {
   margin-bottom: 10px;
   display: inline-block;
   width: 160px;
-  color: black;
+  color: white;
+  border: 1px solid white;
+  border-radius: 5px;
+  padding: 5px;
+  background-color: gray;
   font-family: Georgia, serif
 }
 
@@ -53,19 +53,16 @@
 }
 
 .page-header {
-  color: black;
+  color: white;
 }
 
 .navbar {
-  background-color: black;
-  color: white;
+  background-color: white;
+  color: black;
   font-family: Georgia, serif
 }
 
-.navbar:hover {
-  background-color: yellow;
-}
 
 body {
-  background: url('index.jpeg') center no-repeat;
+  background: url('index2.jpg') center no-repeat;
 }
