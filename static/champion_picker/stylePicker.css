@@ -52,6 +52,38 @@
   overflow-y: scroll;
 }
 
+.champion-vertical {
+  display: block;
+  width: 100px;
+  height: 150px;
+  cursor: pointer;
+  padding: 5px;
+  margin: 3px;
+  border: 1px solid gray;
+  border-radius: 5px;
+}
+
+.champion-vertical:hover {
+  background-color: gray;
+}
+
+.champion-details {
+  height: 150px;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.champion-details:hover {
+  background-color: gray;
+}
+
+.champion:hover {
+  background-color: white;
+  color: black;
+  width: 150px;
+  height: 175px;
+}
+
 .page-header {
   color: white;
 }
