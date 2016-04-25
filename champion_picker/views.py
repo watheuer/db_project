@@ -45,8 +45,10 @@ def get_matchup(request):
     turn = request_data["turn"]
 
     for b in bans:
-        current_ban = Role.objects.get(id=b)
-        banned_roles.append(current_ban)
+        rel_champ = Champion.objects.get(name=b)
+        current_ban = Role.objects.filter(champion=rel_champ)
+        for c in current_ban:
+            banned_roles.append(c)
 
     team_one = []
     team_two = []
