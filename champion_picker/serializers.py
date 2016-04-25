@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from models import Champion, Role, WinRate, Item, ItemBuild
+from champion_picker.models import Champion, Role, WinRate, Item, ItemBuild
 
 
 class ChampionSerializer(serializers.ModelSerializer):

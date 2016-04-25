@@ -5,8 +5,8 @@ from django.db.models import Q
 from django.shortcuts import get_object_or_404, render
 from django.http import JsonResponse, HttpResponse
 from django.views.decorators.csrf import csrf_exempt
-from models import Champion, Role, WinRate, Item, ItemBuild
-from serializers import ChampionSerializer, RoleSerializer, ItemSerializer, BuildSerializer
+from champion_picker.models import Champion, Role, WinRate, Item, ItemBuild
+from champion_picker.serializers import ChampionSerializer, RoleSerializer, ItemSerializer, BuildSerializer
 from rest_framework.response import Response
 from rest_framework import viewsets
 from rest_framework.decorators import detail_route, list_route
