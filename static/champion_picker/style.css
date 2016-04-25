@@ -40,8 +40,6 @@
 .champion:hover {
   background-color: white;
   color: black;
-  width: 150px;
-  height: 175px;
 }
 
 .role {

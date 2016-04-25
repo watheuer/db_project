@@ -74,6 +74,11 @@
   font-family: Georgia, serif
 }
 
+.RoleLabel {
+  color: gray;
+  font-size: 20;
+  font-family: Georgia, serif
+}
 
 body {
   background: url('SRFull2.jpg') center no-repeat;
