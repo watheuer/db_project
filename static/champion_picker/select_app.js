@@ -34,7 +34,23 @@ app.factory('roleFactory', ['$http', function($http) {
   return factory;
 }]);
 
-app.controller('champSelectCtrl', ['$scope', 'championFactory', function($scope, championFactory) {
+app.factory('matchupFactory', ['$http', function($http) {
+  var urlBase = '/matchup/';
+  var factory = {};
+
+  factory.postState = function(team1, team2, bans, team) {
+    return $http.post(urlBase, {
+        "team1": team1,
+        "team2": team2,
+        "bans": bans,
+        "team": team
+    });
+  };
+
+  return factory;
+}]);
+
+app.controller('champSelectCtrl', ['$scope', 'championFactory', 'matchupFactory', function($scope, championFactory, matchupFactory) {
   getChampions();
 
   $scope.team1 = ['', '', '', '', '']
@@ -46,6 +62,11 @@ app.controller('champSelectCtrl', ['$scope', 'championFactory', function($scope,
     // get best options, show that modal
     $scope.team = team;
     $scope.index = index;
+
+    matchupFactory.postState({
+        
+    });
+
     $('#bestOptionPicker').modal('show');
   };
 
