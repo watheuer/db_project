@@ -108,7 +108,7 @@ def get_matchup(request):
         srole = ""
         for c in m:
             entry_line.append({"role_name": c.role1.name, "role1": c.role1.champion.name, "role2": c.role2.champion.name, "portrait": c.role1.champion.portrait_image.name, "win_rate": float(c.win_rate)})
-            srole = str(c.role2.name) + ":" + str(c.role2.champion.name)
+            srole = str(c.role2.champion.name) + " as " + str(c.role2.name) 
         final_data[str(srole)] = entry_line
 
     return HttpResponse(json.dumps(final_data))

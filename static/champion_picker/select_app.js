@@ -84,7 +84,7 @@ app.controller('champSelectCtrl', ['$scope', 'championFactory', 'matchupFactory'
     }
 
     matchupFactory.postState(team1_names, team2_names, ban_names, team).then(function (res) {
-      console.log(res);
+      $scope.bestPicks = res.data;
     }, function (err) {
       $scope.status = 'Error loading data: ' + err.message;
     });

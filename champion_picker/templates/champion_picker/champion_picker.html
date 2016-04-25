@@ -120,7 +120,7 @@
             <h4 class="modal-title" id="bestOptionPickerLabel">Pick a Champion</h4>
           </div>
           <div class="modal-body champions">
-            <div class="champion-details"  ng-repeat="champion in champions" ng-click="selectChampion(champion)">
+            <div class="champion-details"  ng-repeat="champion in bestPicks" ng-click="selectChampion(champion)">
               <div class="row">
                 <div class="col-md-2">
                     <div style="text-align: center">{{ champion.name }}</div>
