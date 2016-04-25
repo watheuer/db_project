@@ -1,5 +1,10 @@
-from django.shortcuts import get_object_or_404
+import json
+
+from django.core import serializers
+from django.db.models import Q
+from django.shortcuts import get_object_or_404, render
 from django.http import JsonResponse, HttpResponse
+from django.views.decorators.csrf import csrf_exempt
 from models import Champion, Role, WinRate, Item, ItemBuild
 from serializers import ChampionSerializer, RoleSerializer, ItemSerializer, BuildSerializer
 from rest_framework.response import Response
@@ -13,7 +18,62 @@ def index(request):
     # super hacky and I'm sorry. Fixes problems with Django + Angular templates
     with open(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'templates/champion_picker/index.html')) as f:
         content = f.read()
-    return HttpResponse(content);
+    return HttpResponse(content)
+
+@csrf_exempt
+def get_matchup(request):
+    js_data = request.body
+
+    request_data = json.loads(js_data)
+
+    team_one = request_data["team1"]
+    team_two = request_data["team2"]
+
+    team_matchups = []
+
+    banned_roles = []
+    bans = request_data["bans"]
+    turn = request_data["turn"]
+
+    for b in bans:
+        current_ban = Role.objects.get(id=b)
+        banned_roles.append(current_ban)
+
+    for t in team_one:
+        banned_roles.append(Role.objects.get(id=int(t)))
+    for t in team_two:
+        banned_roles.append(Role.objects.get(id=int(t)))
+
+    print("BANS: " + str(banned_roles))
+
+    if turn == 1:
+        for role_o in team_two:
+            current_role = Role.objects.get(id=role_o)
+            best_matchups = WinRate.objects.filter(Q(role2=current_role) & ~Q(role1__in=banned_roles)).order_by('-win_rate')[0:5]
+            if len(best_matchups) == 0:
+                best_matchups = WinRate.objects.filter(Q(role2=current_role) & ~Q(role1__in=banned_roles)).order_by('-win_rate')[0:5]
+            team_matchups.append(best_matchups)
+            print(str(current_role) + ": " + str(best_matchups))
+    elif turn == 2:
+        for role_o in team_one:
+            current_role = Role.objects.get(id=role_o)
+            best_matchups = WinRate.objects.filter(Q(role2=current_role) & ~Q(role1__in=banned_roles)).order_by('-win_rate')[0:5]
+            if len(best_matchups) == 0:
+                best_matchups = WinRate.objects.filter(Q(role2=current_role) & ~Q(role1__in=banned_roles)).order_by('-win_rate')[0:5]
+            team_matchups.append(best_matchups)
+            print(str(current_role) + ": " + str(best_matchups))
+
+    final_data = []
+
+    for m in team_matchups:
+        entry_line = []
+        srole = ""
+        for c in m:
+            entry_line.append({"role": c.role1.champion.name, "portrait": c.role1.champion.portrait_image.image, "win_rate": float(c.win_rate)})
+            srole = c.role2.champion.name
+        print(str(srole) + ": " + str(entry_line))
+
+    return HttpResponse(str(banned_roles))
 
 class ChampionViewSet(viewsets.ViewSet):
     """

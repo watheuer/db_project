@@ -19,6 +19,7 @@ class RoleAdmin(ImportExportMixin, admin.ModelAdmin):
         model = Role
 
 class WinRateAdmin(ImportExportMixin, admin.ModelAdmin):
+    search_fields = ['role1__champion__name']
     class Meta:
         model = WinRate
 

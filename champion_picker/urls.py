@@ -12,6 +12,7 @@ router.register(r'api/builds', views.BuildViewSet)
 
 urlpatterns = [
     url(r'^$', views.index, name='index'),
+    url(r'matchup/', views.get_matchup, name='matchup')
 ]
 
 urlpatterns += router.urls

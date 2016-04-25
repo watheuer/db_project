@@ -32,7 +32,7 @@ class WinRate(models.Model):
     win_rate = models.DecimalField(max_digits=30, decimal_places=2)
 
     def __str__(self):
-        return "%s %s" % (self.role1, self.role2)
+        return "%s beats %s %s" % (self.role1, self.role2, self.win_rate)
 
 class Item(models.Model):
     name = models.CharField(max_length=48)
