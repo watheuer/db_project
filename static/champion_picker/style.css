@@ -1,12 +1,15 @@
 .champion {
   display: inline-block;
-  width: 100px;
+  width: 125px;
   height: 150px;
   cursor: pointer;
   padding: 5px;
   margin: 3px;
-  border: 1px solid gray;
+  border: 1px solid white;
   border-radius: 5px;
+  background-color: gray;
+  color: white;
+  font-family: Georgia, serif
 } 
 
 .champion-vertical {
@@ -35,16 +38,45 @@
 }
 
 .champion:hover {
-  background-color: gray;
+  background-color: white;
+  color: black;
+  width: 150px;
+  height: 175px;
 }
 
 .role {
   margin-bottom: 10px;
   display: inline-block;
   width: 160px;
+  color: white;
+  border: 1px solid white;
+  border-radius: 5px;
+  padding: 5px;
+  background-color: gray;
+  font-family: Georgia, serif
+}
+
+.role:hover {
+  font-size: 20;
+  width: 200px;
 }
 
 .champions {
   max-height: 800px;
   overflow-y: scroll;
+}
+
+.page-header {
+  color: white;
+}
+
+.navbar {
+  background-color: white;
+  color: black;
+  font-family: Georgia, serif
+}
+
+
+body {
+  background: url('index2.jpg') center no-repeat;
 }
