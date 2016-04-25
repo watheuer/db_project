@@ -71,17 +71,17 @@ def get_matchup(request):
             team_matchups.append(best_matchups)
             print(str(current_role) + ": " + str(best_matchups))
 
-    final_data = []
+    final_data = {}
 
     for m in team_matchups:
         entry_line = []
         srole = ""
         for c in m:
-            entry_line.append({"role": c.role1.champion.name, "portrait": c.role1.champion.portrait_image.image, "win_rate": float(c.win_rate)})
+            entry_line.append({"role1": c.role1.champion.name, "role2": c.role2.champion.name, "portrait": c.role1.champion.portrait_image.name, "win_rate": float(c.win_rate)})
             srole = c.role2.champion.name
-        print(str(srole) + ": " + str(entry_line))
+        final_data[str(srole)] = entry_line
 
-    return HttpResponse(str(banned_roles))
+    return HttpResponse(json.dumps(final_data))
 
 def builder(request):
     content = ''
