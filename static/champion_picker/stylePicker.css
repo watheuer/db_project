@@ -9,7 +9,7 @@
   border-radius: 5px;
   background-color: gray;
   color: white;
-  font-family: Georgia, serif
+  font-family: Georgia, serif;
 } 
 
 .champion-vertical {
@@ -23,7 +23,7 @@
   border-radius: 5px;
   background-color: gray;
   color: white;
-  font-family: Georgia, serif
+  font-family: Georgia, serif;
 }
 
 .champion:hover {
@@ -40,7 +40,7 @@
   border-radius: 5px;
   padding: 5px;
   background-color: gray;
-  font-family: Georgia, serif
+  font-family: Georgia, serif;
 }
 
 .role:hover {
@@ -71,11 +71,23 @@
 .navbar {
   background-color: white;
   color: black;
-  font-family: Georgia, serif
+  font-family: Georgia, serif;
 }
 
+.RoleLabel {
+  color: gray;
+  font-size: 20;
+  font-family: Georgia, serif;
+}
 
 body {
   background: url('SRFull2.jpg') center no-repeat;
   margin-bottom: 50px;
+}
+
+select {
+  background-color: transparent;
+  color: gray;
+  font-size: 20;
+  font-family: Georgia, serif;
 }
