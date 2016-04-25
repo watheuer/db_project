@@ -15,6 +15,14 @@ def index(request):
         content = f.read()
     return HttpResponse(content);
 
+def builder(request):
+    content = ''
+
+    # super hacky and I'm sorry. Fixes problems with Django + Angular templates
+    with open(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'templates/champion_picker/champion_picker.html')) as f:
+        content = f.read()
+    return HttpResponse(content);
+
 class ChampionViewSet(viewsets.ViewSet):
     """
     ViewSet for listing and retrieving champions.
