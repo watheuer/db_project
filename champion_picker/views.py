@@ -20,6 +20,7 @@ def index(request):
         content = f.read()
     return HttpResponse(content)
 
+
 def builder(request):
     content = ''
 
@@ -34,8 +35,8 @@ def get_matchup(request):
 
     request_data = json.loads(js_data)
 
-    team_one = request_data["team1"]
-    team_two = request_data["team2"]
+    team_one_str = request_data["team1"]
+    team_two_str = request_data["team2"]
 
     team_matchups = []
 
@@ -47,27 +48,50 @@ def get_matchup(request):
         current_ban = Role.objects.get(id=b)
         banned_roles.append(current_ban)
 
-    for t in team_one:
-        banned_roles.append(Role.objects.get(id=int(t)))
-    for t in team_two:
-        banned_roles.append(Role.objects.get(id=int(t)))
-
-    print("BANS: " + str(banned_roles))
-
+    team_one = []
+    team_two = []
     if turn == 1:
+        for champ in team_one_str:
+            tc = Champion.objects.get(name=champ)
+            roles_for_champ = Role.objects.filter(champion=tc)
+            for r in roles_for_champ:
+                team_one.append(str(r.id))
+        for champ in team_two_str:
+            tc = Champion.objects.get(name=champ)
+            roles_for_champ = Role.objects.filter(champion=tc)
+            for r in roles_for_champ:
+                team_two.append(str(r.id))
+        for t in team_one:
+            banned_roles.append(Role.objects.get(id=int(t)))
+        for t in team_two:
+            banned_roles.append(Role.objects.get(id=int(t)))
         for role_o in team_two:
             current_role = Role.objects.get(id=role_o)
             best_matchups = WinRate.objects.filter(Q(role2=current_role) & ~Q(role1__in=banned_roles)).order_by('-win_rate')[0:5]
             if len(best_matchups) == 0:
-                best_matchups = WinRate.objects.filter(Q(role2=current_role) & ~Q(role1__in=banned_roles)).order_by('-win_rate')[0:5]
+                best_matchups = WinRate.objects.filter(Q(role1=current_role) & ~Q(role2__in=banned_roles)).order_by('-win_rate')[0:5]
             team_matchups.append(best_matchups)
             print(str(current_role) + ": " + str(best_matchups))
     elif turn == 2:
+        for champ in team_one_str:
+            tc = Champion.objects.get(name=champ)
+            roles_for_champ = Role.objects.filter(champion=tc)
+            for r in roles_for_champ:
+                team_one.append(str(r.id))
+        for champ in team_two_str:
+            tc = Champion.objects.get(name=champ)
+            roles_for_champ = Role.objects.filter(champion=tc)
+            for r in roles_for_champ:
+                team_two.append(str(r.id))
+        for t in team_one:
+            banned_roles.append(Role.objects.get(id=int(t)))
+        for t in team_two:
+            banned_roles.append(Role.objects.get(id=int(t)))
         for role_o in team_one:
             current_role = Role.objects.get(id=role_o)
             best_matchups = WinRate.objects.filter(Q(role2=current_role) & ~Q(role1__in=banned_roles)).order_by('-win_rate')[0:5]
             if len(best_matchups) == 0:
-                best_matchups = WinRate.objects.filter(Q(role2=current_role) & ~Q(role1__in=banned_roles)).order_by('-win_rate')[0:5]
+                best_matchups = WinRate.objects.filter(Q(role1=current_role) & ~Q(role2__in=banned_roles)).order_by('-win_rate')[0:5]
             team_matchups.append(best_matchups)
             print(str(current_role) + ": " + str(best_matchups))
 
@@ -82,14 +106,6 @@ def get_matchup(request):
         final_data[str(srole)] = entry_line
 
     return HttpResponse(json.dumps(final_data))
-
-def builder(request):
-    content = ''
-
-    # super hacky and I'm sorry. Fixes problems with Django + Angular templates
-    with open(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'templates/champion_picker/champion_picker.html')) as f:
-        content = f.read()
-    return HttpResponse(content);
 
 class ChampionViewSet(viewsets.ViewSet):
     """
