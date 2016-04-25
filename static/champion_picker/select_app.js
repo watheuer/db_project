@@ -38,12 +38,12 @@ app.factory('matchupFactory', ['$http', function($http) {
   var urlBase = '/matchup/';
   var factory = {};
 
-  factory.postState = function(team1, team2, bans, team) {
+  factory.postState = function(team1, team2, bans, turn) {
     return $http.post(urlBase, {
         "team1": team1,
         "team2": team2,
         "bans": bans,
-        "team": team
+        "turn": turn,
     });
   };
 
@@ -62,9 +62,31 @@ app.controller('champSelectCtrl', ['$scope', 'championFactory', 'matchupFactory'
     // get best options, show that modal
     $scope.team = team;
     $scope.index = index;
+    
+    var team1 = $scope.team1.filter(function(val) { return val !== ''; });
+    var team2 = $scope.team2.filter(function(val) { return val !== ''; });
+    var team1_bans = $scope.team1_bans.filter(function(val) { return val !== ''; });
+    var team2_bans = $scope.team2_bans.filter(function(val) { return val !== ''; });
+    var bans = team1_bans.concat(team2_bans);
+    
+    var team1_names = [];
+    var team2_names = [];
+    var ban_names = [];
+    
+    for (var i = 0; i < team1.length; i++) {
+      team1_names.push(team1[i].name);
+    }
+    for (var i = 0; i < team2.length; i++) {
+      team2_names.push(team2[i].name);
+    }
+    for (var i = 0; i < bans.length; i++) {
+      ban_names.push(bans[i].name);
+    }
 
-    matchupFactory.postState({
-        
+    matchupFactory.postState(team1_names, team2_names, ban_names, team).then(function (res) {
+      console.log(res);
+    }, function (err) {
+      $scope.status = 'Error loading data: ' + err.message;
     });
 
     $('#bestOptionPicker').modal('show');
