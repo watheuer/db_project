@@ -20,6 +20,20 @@
   border-radius: 5px;
 }
 
+.champion-vertical:hover {
+  background-color: gray;
+}
+
+.champion-details {
+  height: 150px;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.champion-details:hover {
+  background-color: gray;
+}
+
 .champion:hover {
   background-color: gray;
 }

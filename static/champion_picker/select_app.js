@@ -35,16 +35,31 @@ app.factory('roleFactory', ['$http', function($http) {
 }]);
 
 app.controller('champSelectCtrl', ['$scope', 'championFactory', function($scope, championFactory) {
+  getChampions();
+
   $scope.team1 = ['', '', '', '', '']
   $scope.team2 = ['', '', '', '', '']
   $scope.team1_bans = ['', '', '']
   $scope.team2_bans = ['', '', '']
 
-  $scope.selectChampion = function(champion) {
-    $scope.selected = champion;
-    if ($scope.selected !== '') {
-      getRoles($scope.selected.name);
+  $scope.pickChampion = function(team, index) {
+    // get best options, show that modal
+    $('#bestOptionPicker').modal('show');
+  };
+
+  $scope.pickAnyChampion = function(team, index) {
+    $scope.team = team;
+    $scope.index = index;
+    $('#champPicker').modal('show'); 
+  };
+
+  $scope.banChampion = function(champion) {
+    if ($scope.team === 1) {
+      $scope.team1_bans[$scope.index] = champion;
+    } else {
+      $scope.team2_bans[$scope.index] = champion;
     }
+    $('#champPicker').modal('hide'); 
   };
 
   function getChampions() {

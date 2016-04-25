@@ -3,6 +3,8 @@
     <title>Test</title>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular.min.js"></script>
     <script src="/static/champion_picker/select_app.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" type="text/css">
     <link rel="stylesheet" href="/static/champion_picker/style.css" type="text/css">
   </head>
@@ -22,16 +24,16 @@
     <div class="row">
       <div class="col-md-6">
         <h3 class="page-header"> Ally Bans</h3>
-        <div class="champion" ng-repeat="champion in team1_bans track by $index" ng-click="pickChampion(1, $index)">
+        <div class="champion" ng-repeat="champion in team1_bans track by $index" ng-click="pickAnyChampion(1, $index)">
           <div style="text-align: left">{{ champion.name }}</div>
-          <img src="{{ champion.portrait_image }}" width="10%" height="5%">
+          <img src="{{ champion.portrait_image }}" width="100%" height="75%">
         </div>
       </div>
       <div class="col-md-6">
         <h3 class="page-header"> Opponent Bans</h3>
-        <div class="champion" ng-repeat="champion in team2_bans track by $index" ng-click="pickChampion(2, $index)">
+        <div class="champion" ng-repeat="champion in team2_bans track by $index" ng-click="pickAnyChampion(2, $index)">
           <div style="text-align: left">{{ champion.name }}</div>
-          <img src="{{ champion.portrait_image }}" width="10%" height="5%">
+          <img src="{{ champion.portrait_image }}" width="100%" height="75%">
         </div>
       </div>
     </div>
@@ -40,7 +42,7 @@
         <h3 class="page-header"> Team 1 Champions</h3>
         <div class="row" ng-repeat="champion in team1 track by $index">
           <div class="col-md-8">
-            <div class="champion-vertical" g-click="pickChampion(1, $index)">
+            <div class="champion-vertical" ng-click="pickChampion(1, $index)">
               <div style="text-align: left">{{ champion.name }}</div>
               <img src="{{ champion.portrait_image }}" width="10%" height="5%">
             </div>
@@ -63,7 +65,7 @@
         <h3 class="page-header"> Team 2 Champions</h3>
         <div class="row" ng-repeat="champion in team1 track by $index">
           <div class="col-md-8">
-            <div class="champion-vertical" g-click="pickChampion(1, $index)">
+            <div class="champion-vertical" ng-click="pickChampion(1, $index)">
               <div style="text-align: left">{{ champion.name }}</div>
               <img src="{{ champion.portrait_image }}" width="10%" height="5%">
             </div>
@@ -83,43 +85,55 @@
         </div>
       </div>
     </div>
-    <div class="row">
-      <h3 class="page-header"> Best Options</h3>
-      <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
-        <div class="panel panel-default">
-          <div class="panel-heading" role="tab" id="headingOne">
-            <h4 class="panel-title">
-              <a role="button" data-toggle="collapse" data-parent="#accordion"         href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-              {{champion.name}} {{role.name}} {{role.win_rate}} {{win_rate.win_rate}}
-              </a>
-            </h4>
+
+    <!-- Modal -->
+    <div class="modal fade" id="champPicker" tabindex="-1" role="dialog">
+      <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="campPickerLabel">Pick a Champion</h4>
           </div>
-          <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-             labelledby="headingOne">
-            <div class="panel-body">
-              additional champion information such as items, general info
+          <div class="modal-body champions">
+            <div class="champion"  ng-repeat="champion in champions" ng-click="banChampion(champion)">
+                <div style="text-align: center">{{ champion.name }}</div>
+                <img src="{{ champion.portrait_image }}" width="100%" height="75%">
             </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
           </div>
         </div>
       </div>
     </div>
-    <div class="row">
-      <h3 class="page-header"> Best Available Champions</h3>
-      <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
-        <div class="panel panel-default">
-          <div class="panel-heading" role="tab" id="headingOne">
-            <h4 class="panel-title">
-              <a role="button" data-toggle="collapse" data-parent="#accordion"         href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-              {{champion.name}} {{role.name}} {{role.win_rate}} {{win_rate.win_rate}}
-              </a>
-            </h4>
+
+    <!-- Modal -->
+    <div class="modal fade" id="bestOptionPicker" tabindex="-1" role="dialog">
+      <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="bestOptionPickerLabel">Pick a Champion</h4>
           </div>
-          <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-             labelledby="headingOne">
-            <div class="panel-body">
-              additional champion information such as items, general info
+          <div class="modal-body champions">
+            <div class="champion-details"  ng-repeat="champion in champions" ng-click="selectChampion(champion)">
+              <div class="row">
+                <div class="col-md-2">
+                    <div style="text-align: center">{{ champion.name }}</div>
+                    <img style="text-align: center" src="{{ champion.portrait_image }}" height="75%">
+                </div>
+                <div class="col-md-10">
+                  STATSSSS
+                </div>
+              </div>
             </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
           </div>
         </div>
       </div>
     </div>
+
   </body>
 </html>
