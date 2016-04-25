@@ -2,409 +2,123 @@
   <head>
     <title>Test</title>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular.min.js"></script>
-    <script src="/static/champion_picker/app.js"></script>
+    <script src="/static/champion_picker/select_app.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" type="text/css">
     <link rel="stylesheet" href="/static/champion_picker/style.css" type="text/css">
   </head>
-  <body ng-app="app" ng-controller="champInfoCtrl">
+  <body ng-app="app" ng-controller="champSelectCtrl">
     <nav class="navbar navbar-default">
       <div class="container">
         <div class="navbar-header">
           <a class="navbar-brand" href="#">League of Legends Champion Picker</a>
         </div>
         <ul class="nav navbar-nav">
-          <li><a href="#">Champions</a></li>
-          <li><a href="#">Roles</a></li> 
+          <li><a href="/">Champions</a></li>
           <li class="active"><a href="#">Team Builder</a></li>
-        </ul> 
+        </ul>
       </div>
     </nav>
     <div class="container">
-      <div class="row">
-        <div class="col-md-6">
+    <div class="row">
+      <div class="col-md-6">
         <h3 class="page-header"> Ally Bans</h3>
-          <div class="champions">
-            <div class="champion"  ng-click="selectChampion(champion)">
-                <div style="text-align: left">{{ champion.name }}</div>
-                <img src="{{ champion.portrait_image }}" width="10%" height="5%">
-            </div>
-          </div>
-          <div class="champions">
-            <div class="champion"  ng-click="selectChampion(champion)">
-                <div style="text-align: left">{{ champion.name }}</div>
-                <img src="{{ champion.portrait_image }}" width="10%" height="5%">
-            </div>
-          </div>
-          <div class="champions">
-            <div class="champion"  ng-click="selectChampion(champion)">
-                <div style="text-align: left">{{ champion.name }}</div>
-                <img src="{{ champion.portrait_image }}" width="10%" height="5%">
-            </div>
-          </div>
+        <div class="champion" ng-repeat="champion in team1_bans track by $index" ng-click="pickChampion(1, $index)">
+          <div style="text-align: left">{{ champion.name }}</div>
+          <img src="{{ champion.portrait_image }}" width="10%" height="5%">
         </div>
-        <div class="col-md-6">
+      </div>
+      <div class="col-md-6">
         <h3 class="page-header"> Opponent Bans</h3>
-          <div class="champions">
-            <div class="champion"  ng-click="selectChampion(champion)">
-                <div style="text-align: left">{{ champion.name }}</div>
-                <img src="{{ champion.portrait_image }}" width="10%" height="5%">
-            </div>
-          </div>
-          <div class="champions">
-            <div class="champion"  ng-click="selectChampion(champion)">
-                <div style="text-align: left">{{ champion.name }}</div>
-                <img src="{{ champion.portrait_image }}" width="10%" height="5%">
-            </div>
-          </div>
-          <div class="champions">
-            <div class="champion"  ng-click="selectChampion(champion)">
-                <div style="text-align: left">{{ champion.name }}</div>
-                <img src="{{ champion.portrait_image }}" width="10%" height="5%">
-            </div>
-          </div>
+        <div class="champion" ng-repeat="champion in team2_bans track by $index" ng-click="pickChampion(2, $index)">
+          <div style="text-align: left">{{ champion.name }}</div>
+          <img src="{{ champion.portrait_image }}" width="10%" height="5%">
         </div>
       </div>
-      <div class="row">
-        <div class="col-md-6">
-        <h3 class="page-header"> Ally Champions</h3>
-	  <div class="col-md-8">
-          <div class="champions">
-            <div class="champion"  ng-click="selectChampion(champion)">
-                <div style="text-align: left">{{ champion.name }}</div>
-                <img src="{{ champion.portrait_image }}" width="10%" height="5%">
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+        <h3 class="page-header"> Team 1 Champions</h3>
+        <div class="row" ng-repeat="champion in team1 track by $index">
+          <div class="col-md-8">
+            <div class="champion-vertical" g-click="pickChampion(1, $index)">
+              <div style="text-align: left">{{ champion.name }}</div>
+              <img src="{{ champion.portrait_image }}" width="10%" height="5%">
             </div>
           </div>
-          </div>
-	  <div class="col-md-4">
+          <div class="col-md-4">
             <form>
-            <fieldset>
-              <p>
-               <label> Role </label>
-               <select id = "myList">
-                 <option value = "1">Top</option>
-                 <option value = "2">Jungle</option>
-                 <option value = "3">Middle</option>
-                 <option value = "4">ADC</option>
-                 <option value = "5">Support</option>
-               </select>
-              </p>
-            </fieldset>
-            </form>
-          </div>
-	  <div class="col-md-8">
-          <div class="champions">
-            <div class="champion"  ng-click="selectChampion(champion)">
-                <div style="text-align: left">{{ champion.name }}</div>
-                <img src="{{ champion.portrait_image }}" width="10%" height="5%">
-            </div>
-          </div>
-          </div>
-	  <div class="col-md-4">
-            <form>
-            <fieldset>
-              <p>
-               <label> Role </label>
-               <select id = "myList">
-                 <option value = "1">Top</option>
-                 <option value = "2">Jungle</option>
-                 <option value = "3">Middle</option>
-                 <option value = "4">ADC</option>
-                 <option value = "5">Support</option>
-               </select>
-              </p>
-            </fieldset>
-            </form>
-          </div>
-	  <div class="col-md-8">
-          <div class="champions">
-            <div class="champion"  ng-click="selectChampion(champion)">
-                <div style="text-align: left">{{ champion.name }}</div>
-                <img src="{{ champion.portrait_image }}" width="10%" height="5%">
-            </div>
-          </div>
-          </div>
-	  <div class="col-md-4">
-            <form>
-            <fieldset>
-              <p>
-               <label> Role </label>
-               <select id = "myList">
-                 <option value = "1">Top</option>
-                 <option value = "2">Jungle</option>
-                 <option value = "3">Middle</option>
-                 <option value = "4">ADC</option>
-                 <option value = "5">Support</option>
-               </select>
-              </p>
-            </fieldset>
-            </form>
-          </div>
-	  <div class="col-md-8">
-          <div class="champions">
-            <div class="champion"  ng-click="selectChampion(champion)">
-                <div style="text-align: left">{{ champion.name }}</div>
-                <img src="{{ champion.portrait_image }}" width="10%" height="5%">
-            </div>
-          </div>
-          </div>
-	  <div class="col-md-4">
-            <form>
-            <fieldset>
-              <p>
-               <label> Role </label>
-               <select id = "myList">
-                 <option value = "1">Top</option>
-                 <option value = "2">Jungle</option>
-                 <option value = "3">Middle</option>
-                 <option value = "4">ADC</option>
-                 <option value = "5">Support</option>
-               </select>
-              </p>
-            </fieldset>
-            </form>
-          </div>
-	  <div class="col-md-8">
-          <div class="champions">
-            <div class="champion"  ng-click="selectChampion(champion)">
-                <div style="text-align: left">{{ champion.name }}</div>
-                <img src="{{ champion.portrait_image }}" width="10%" height="5%">
-            </div>
-          </div>
-          </div>
-	  <div class="col-md-4">
-            <form>
-            <fieldset>
-              <p>
-               <label> Role </label>
-               <select id = "myList">
-                 <option value = "1">Top</option>
-                 <option value = "2">Jungle</option>
-                 <option value = "3">Middle</option>
-                 <option value = "4">ADC</option>
-                 <option value = "5">Support</option>
-               </select>
-              </p>
-            </fieldset>
-            </form>
-          </div>
-        </div>
-
-        <div class="col-md-6">
-        <h3 class="page-header"> Opponent Champions</h3>
- 	  <div class="col-md-8">
-          <div class="champions">
-            <div class="champion"  ng-click="selectChampion(champion)">
-                <div style="text-align: left">{{ champion.name }}</div>
-                <img src="{{ champion.portrait_image }}" width="10%" height="5%">
-            </div>
-          </div>
-          </div>
-	  <div class="col-md-4">
-            <form>
-            <fieldset>
-              <p>
-               <label> Role </label>
-               <select id = "myList">
-                 <option value = "1">Top</option>
-                 <option value = "2">Jungle</option>
-                 <option value = "3">Middle</option>
-                 <option value = "4">ADC</option>
-                 <option value = "5">Support</option>
-               </select>
-              </p>
-            </fieldset>
-            </form>
-          </div>
-	  <div class="col-md-8">
-          <div class="champions">
-            <div class="champion"  ng-click="selectChampion(champion)">
-                <div style="text-align: left">{{ champion.name }}</div>
-                <img src="{{ champion.portrait_image }}" width="10%" height="5%">
-            </div>
-          </div>
-          </div>
-	  <div class="col-md-4">
-            <form>
-            <fieldset>
-              <p>
-               <label> Role </label>
-               <select id = "myList">
-                 <option value = "1">Top</option>
-                 <option value = "2">Jungle</option>
-                 <option value = "3">Middle</option>
-                 <option value = "4">ADC</option>
-                 <option value = "5">Support</option>
-               </select>
-              </p>
-            </fieldset>
-            </form>
-          </div>
-	  <div class="col-md-8">
-          <div class="champions">
-            <div class="champion"  ng-click="selectChampion(champion)">
-                <div style="text-align: left">{{ champion.name }}</div>
-                <img src="{{ champion.portrait_image }}" width="10%" height="5%">
-            </div>
-          </div>
-          </div>
-	  <div class="col-md-4">
-            <form>
-            <fieldset>
-              <p>
-               <label> Role </label>
-               <select id = "myList">
-                 <option value = "1">Top</option>
-                 <option value = "2">Jungle</option>
-                 <option value = "3">Middle</option>
-                 <option value = "4">ADC</option>
-                 <option value = "5">Support</option>
-               </select>
-              </p>
-            </fieldset>
-            </form>
-          </div>
-	  <div class="col-md-8">
-          <div class="champions">
-            <div class="champion"  ng-click="selectChampion(champion)">
-                <div style="text-align: left">{{ champion.name }}</div>
-                <img src="{{ champion.portrait_image }}" width="10%" height="5%">
-            </div>
-          </div>
-          </div>
-	  <div class="col-md-4">
-            <form>
-            <fieldset>
-              <p>
-               <label> Role </label>
-               <select id = "myList">
-                 <option value = "1">Top</option>
-                 <option value = "2">Jungle</option>
-                 <option value = "3">Middle</option>
-                 <option value = "4">ADC</option>
-                 <option value = "5">Support</option>
-               </select>
-              </p>
-            </fieldset>
-            </form>
-          </div>
-	  <div class="col-md-8">
-          <div class="champions">
-            <div class="champion"  ng-click="selectChampion(champion)">
-                <div style="text-align: left">{{ champion.name }}</div>
-                <img src="{{ champion.portrait_image }}" width="10%" height="5%">
-            </div>
-          </div>
-          </div>
-	  <div class="col-md-4">
-            <form>
-            <fieldset>
-              <p>
-               <label> Role </label>
-               <select id = "myList">
-                 <option value = "1">Top</option>
-                 <option value = "2">Jungle</option>
-                 <option value = "3">Middle</option>
-                 <option value = "4">ADC</option>
-                 <option value = "5">Support</option>
-               </select>
-              </p>
-            </fieldset>
+              <fieldset>
+                <p>
+                  <label> Role </label>
+                  <select id = "myList">
+                    <option value = "0">---</option>
+                  </select>
+                </p>
+              </fieldset>
             </form>
           </div>
         </div>
       </div>
-      <div class="row">
-        <h3 class="page-header"> Best Options</h3>
-	  <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
-  	    <div class="panel panel-default">
-    	      <div class="panel-heading" role="tab" id="headingOne">
-      		<h4 class="panel-title">
-        		<a role="button" data-toggle="collapse" data-parent="#accordion" 				href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-         		 {{champion.name}} {{role.name}} {{role.win_rate}} {{win_rate.win_rate}}
-        		</a>
-      		</h4>
-    	      </div>
-    	      <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-	  	        labelledby="headingOne">
-                <div class="panel-body">
-                   additional champion information such as items, general info
-                </div>
-              </div>
+      <div class="col-md-6">
+        <h3 class="page-header"> Team 2 Champions</h3>
+        <div class="row" ng-repeat="champion in team1 track by $index">
+          <div class="col-md-8">
+            <div class="champion-vertical" g-click="pickChampion(1, $index)">
+              <div style="text-align: left">{{ champion.name }}</div>
+              <img src="{{ champion.portrait_image }}" width="10%" height="5%">
             </div>
-  	    <div class="panel panel-default">
-    	      <div class="panel-heading" role="tab" id="headingOne">
-      		<h4 class="panel-title">
-        		<a role="button" data-toggle="collapse" data-parent="#accordion" 				href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-         		 {{champion.name}} {{role.name}} {{role.win_rate}} {{win_rate.win_rate}}
-        		</a>
-      		</h4>
-    	      </div>
-    	      <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-	  	        labelledby="headingOne">
-                <div class="panel-body">
-                   additional champion information such as items, general info
-                </div>
-              </div>
-            </div>
-  	      	    <div class="panel panel-default">
-    	      <div class="panel-heading" role="tab" id="headingOne">
-      		<h4 class="panel-title">
-        		<a role="button" data-toggle="collapse" data-parent="#accordion" 				href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-         		 {{champion.name}} {{role.name}} {{role.win_rate}} {{win_rate.win_rate}}
-        		</a>
-      		</h4>
-    	      </div>
-    	      <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-	  	        labelledby="headingOne">
-                <div class="panel-body">
-                   additional champion information such as items, general info
-                </div>
-              </div>
-            </div>
-         </div>
+          </div>
+          <div class="col-md-4">
+            <form>
+              <fieldset>
+                <p>
+                  <label> Role </label>
+                  <select id = "myList">
+                    <option value = "0">---</option>
+                  </select>
+                </p>
+              </fieldset>
+            </form>
+          </div>
+        </div>
       </div>
-      <div class="row">
-        <h3 class="page-header"> Best Available Champions</h3>
- 	  <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
-  	    <div class="panel panel-default">
-    	      <div class="panel-heading" role="tab" id="headingOne">
-      		<h4 class="panel-title">
-        		<a role="button" data-toggle="collapse" data-parent="#accordion" 				href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-         		 {{champion.name}} {{role.name}} {{role.win_rate}} {{win_rate.win_rate}}
-        		</a>
-      		</h4>
-    	      </div>
-    	      <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-	  	        labelledby="headingOne">
-                <div class="panel-body">
-                   additional champion information such as items, general info
-                </div>
-              </div>
+    </div>
+    <div class="row">
+      <h3 class="page-header"> Best Options</h3>
+      <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+        <div class="panel panel-default">
+          <div class="panel-heading" role="tab" id="headingOne">
+            <h4 class="panel-title">
+              <a role="button" data-toggle="collapse" data-parent="#accordion"         href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+              {{champion.name}} {{role.name}} {{role.win_rate}} {{win_rate.win_rate}}
+              </a>
+            </h4>
+          </div>
+          <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-             labelledby="headingOne">
+            <div class="panel-body">
+              additional champion information such as items, general info
             </div>
-  	    <div class="panel panel-default">
-    	      <div class="panel-heading" role="tab" id="headingOne">
-      		<h4 class="panel-title">
-        		<a role="button" data-toggle="collapse" data-parent="#accordion" 				href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-         		 {{champion.name}} {{role.name}} {{role.win_rate}} {{win_rate.win_rate}}
-        		</a>
-      		</h4>
-    	      </div>
-    	      <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-	  	        labelledby="headingOne">
-                <div class="panel-body">
-                   additional champion information such as items, general info
-                </div>
-              </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <h3 class="page-header"> Best Available Champions</h3>
+      <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+        <div class="panel panel-default">
+          <div class="panel-heading" role="tab" id="headingOne">
+            <h4 class="panel-title">
+              <a role="button" data-toggle="collapse" data-parent="#accordion"         href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+              {{champion.name}} {{role.name}} {{role.win_rate}} {{win_rate.win_rate}}
+              </a>
+            </h4>
+          </div>
+          <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-             labelledby="headingOne">
+            <div class="panel-body">
+              additional champion information such as items, general info
             </div>
-  	      	    <div class="panel panel-default">
-    	      <div class="panel-heading" role="tab" id="headingOne">
-      		<h4 class="panel-title">
-        		<a role="button" data-toggle="collapse" data-parent="#accordion" 				href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-         		 {{champion.name}} {{role.name}} {{role.win_rate}} {{win_rate.win_rate}}
-        		</a>
-      		</h4>
-    	      </div>
-    	      <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-	  	        labelledby="headingOne">
-                <div class="panel-body">
-                   additional champion information such as items, general info
-                </div>
-              </div>
-            </div>
+          </div>
+        </div>
       </div>
     </div>
   </body>
