@@ -44,8 +44,19 @@ app.controller('champSelectCtrl', ['$scope', 'championFactory', function($scope,
 
   $scope.pickChampion = function(team, index) {
     // get best options, show that modal
+    $scope.team = team;
+    $scope.index = index;
     $('#bestOptionPicker').modal('show');
   };
+
+  $scope.selectChampion = function(champion) {
+    if ($scope.team === 1) {
+      $scope.team1[$scope.index] = champion;
+    } else {
+      $scope.team2[$scope.index] = champion;
+    }
+    $('#bestOptionPicker').modal('hide');
+  }
 
   $scope.pickAnyChampion = function(team, index) {
     $scope.team = team;

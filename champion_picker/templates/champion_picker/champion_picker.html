@@ -63,9 +63,9 @@
       </div>
       <div class="col-md-6">
         <h3 class="page-header"> Team 2 Champions</h3>
-        <div class="row" ng-repeat="champion in team1 track by $index">
+        <div class="row" ng-repeat="champion in team2 track by $index">
           <div class="col-md-8">
-            <div class="champion-vertical" ng-click="pickChampion(1, $index)">
+            <div class="champion-vertical" ng-click="pickChampion(2, $index)">
               <div style="text-align: left">{{ champion.name }}</div>
               <img src="{{ champion.portrait_image }}" width="10%" height="5%">
             </div>
