@@ -47,6 +47,7 @@ def get_matchup(request):
     for b in bans:
         rel_champ = Champion.objects.get(name=b)
         current_ban = Role.objects.filter(champion=rel_champ)
+        print("INITIAL BAN - CHAMPION " + str(rel_champ.name) + " SQL: " + str(current_ban.query))
         for c in current_ban:
             banned_roles.append(c)
 
@@ -56,11 +57,13 @@ def get_matchup(request):
         for champ in team_one_str:
             tc = Champion.objects.get(name=champ)
             roles_for_champ = Role.objects.filter(champion=tc)
+            print("TEAM ONE BAN SQL: " + str(roles_for_champ.query))
             for r in roles_for_champ:
                 team_one.append(str(r.id))
         for champ in team_two_str:
             tc = Champion.objects.get(name=champ)
             roles_for_champ = Role.objects.filter(champion=tc)
+            print("TEAM TWO BAN SQL: " + str(roles_for_champ.query))
             for r in roles_for_champ:
                 team_two.append(str(r.id))
         for t in team_one:
@@ -72,6 +75,7 @@ def get_matchup(request):
             best_matchups = WinRate.objects.filter(Q(role2=current_role) & ~Q(role1__in=banned_roles)).order_by('-win_rate')[0:5]
             if len(best_matchups) == 0:
                 best_matchups = WinRate.objects.filter(Q(role1=current_role) & ~Q(role2__in=banned_roles)).order_by('-win_rate')[0:5]
+            print("TEAM ONE MATCHUP SQL: " + str(best_matchups.query))
             team_matchups.append(best_matchups)
             print(str(current_role) + ": " + str(best_matchups))
     elif turn == 2:
@@ -108,6 +112,7 @@ def get_matchup(request):
         final_data[str(srole)] = entry_line
 
     return HttpResponse(json.dumps(final_data))
+
 
 class ChampionViewSet(viewsets.ViewSet):
     """

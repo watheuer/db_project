@@ -1,0 +1,19 @@
+Main Page Champion List:
+    SELECT "champion_picker_champion"."name", "champion_picker_champion"."portrait_image",
+    "champion_picker_champion"."q_skill", "champion_picker_champion"."w_skill",
+    "champion_picker_champion"."e_skill", "champion_picker_champion"."r_skill" FROM "champion_picker_champion"
+
+Selecting all Roles for a Champion:
+    SELECT "champion_picker_role"."id", "champion_picker_role"."name",
+    "champion_picker_role"."champion_id", "champion_picker_role"."win_rate",
+    "champion_picker_role"."kills", "champion_picker_role"."deaths", "champion_picker_role"."assists",
+    "champion_picker_role"."minions_killed" FROM "champion_picker_role" WHERE "champion_picker_role"."champion_id" = XinZhao
+
+TEAM ONE MATCHUP SQL:
+    SELECT "champion_picker_winrate"."id", "champion_picker_winrate"."role1_id",
+    "champion_picker_winrate"."role2_id", "champion_picker_winrate"."win_rate" FROM "champion_picker_winrate"
+    WHERE ("champion_picker_winrate"."role2_id" = 4
+    AND NOT ("champion_picker_winrate"."role1_id"
+    IN (1, 2, 21, 3, 11, 12, 13, 20, 4, 5, 6, 19, 28, 29)))
+    ORDER BY "champion_picker_winrate"."win_rate" DESC LIMIT 5
+
