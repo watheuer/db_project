@@ -49,17 +49,7 @@
           </div>
           <div class="col-md-4">
           <div class="RoleLabel">
-            <form>
-              <fieldset>
-                <p>
-                  <label> Role </label>
-                  <select>
-                    <option value="0">-----------</option>
-                    <option ng-selected="{{ role.name == team1_roles[$index] }}" value="{{ role.name }}" ng-repeat="role in champion.roles">{{ role.name }}</option>
-                  </select>
-                </p>
-              </fieldset>
-            </form>
+            Role: <span ng-show="typeof(champion) !== 'undefined'">{{ team1_roles[$index] }}</span>
           </div>
           </div>
         </div>
@@ -75,17 +65,7 @@
           </div>
           <div class="col-md-4">
           <div class="RoleLabel">
-            <form>
-              <fieldset>
-                <p>
-                  <label> Role </label>
-                  <select>
-                    <option value="0">-----------</option>
-                    <option ng-selected="{{ role.name == team1_roles[$index] }}" value="{{ role.name }}" ng-repeat="role in champion.roles">{{ role.name }}</option>
-                  </select>
-                </p>
-              </fieldset>
-            </form>
+            Role: <span ng-show="typeof(champion) !== 'undefined'">{{ team2_roles[$index] }}</span>
           </div>
           </div>
         </div>
