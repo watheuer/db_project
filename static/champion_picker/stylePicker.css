@@ -86,8 +86,8 @@ body {
 }
 
 select {
-  background-color: transparent;
-  color: gray;
+  background-color: gray;
+  color: white;
   font-size: 20;
   font-family: Georgia, serif;
 }
