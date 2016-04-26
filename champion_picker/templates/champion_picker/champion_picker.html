@@ -112,7 +112,7 @@
                   </div>
                   <div class="col-md-10">
                     <br>
-                    <div>Win rate: {{ champion.win_rate }}</div>
+                    <div>Win rate: {{ champion.win_rate }}% <span ng-if="champion.role2">against {{ champion.role2 }}</span></div>
                     <div>Kills: {{ champion.kills }}</div>
                     <div>Deaths: {{ champion.deaths }}</div>
                     <div>Assists: {{ champion.assists}}</div>
@@ -145,7 +145,7 @@
                   </div>
                   <div class="col-md-10">
                     <br>
-                    <div>Win rate: {{ role.win_rate }}</div>
+                    <div>Win rate: {{ role.win_rate }}%</div>
                     <div>Kills: {{ role.kills }}</div>
                     <div>Deaths: {{ role.deaths }}</div>
                     <div>Assists: {{ role.assists}}</div>
@@ -167,9 +167,9 @@
           <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
             <h4 class="modal-title" id="winnerLabel">Winner: {{ winner }}</h4>
-            <label>Search champions: <input ng-model="searchText"></label>
           </div>
           <div class="modal-body">
+            {{ winner }} has a {{ advantage }}% advantage over the other team.
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -178,6 +178,6 @@
       </div>
     </div>
 
-    <button ng-show="allPicked" id="calc-winner" class="btn btn-info">Calculate Winner!</button>
+    <button ng-show="allPicked" id="calc-winner" class="btn btn-info" ng-click="getWinner()">Calculate Winner!</button>
   </body>
 </html>

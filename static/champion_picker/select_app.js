@@ -107,6 +107,25 @@ app.controller('champSelectCtrl', ['$scope', 'championFactory', 'matchupFactory'
     });
   };
 
+  $scope.getWinner = function() {
+    var team1_total = 0;
+    for (var i = 0; i < $scope.team1_winrates.length; i++) {
+      team1_total += parseFloat($scope.team1_winrates[i]);
+    }
+    console.log(team1_total);
+
+    var team2_total = 0;
+    for (var i = 0; i < $scope.team2_winrates.length; i++) {
+      team2_total += parseFloat($scope.team2_winrates[i]);
+    }
+    console.log(team2_total);
+    
+    $scope.winner = (team1_total > team2_total) ? "Team 1" : "Team 2";
+    $scope.advantage = (Math.max(team1_total, team2_total) - Math.min(team1_total, team2_total)) / 10;
+    $scope.advantage = $scope.advantage.toFixed(2);
+    $('#winners').modal('show');
+  }
+
   $scope.selectChampion = function(champion, role) {
     console.log(champion);
     console.log(role);
@@ -119,14 +138,17 @@ app.controller('champSelectCtrl', ['$scope', 'championFactory', 'matchupFactory'
       if ($scope.team === 1) {
         $scope.team1_roles[$scope.selected_index] = role;
         $scope.team1[$scope.selected_index] = champion_data;
+        $scope.team1_winrates[$scope.selected_index] = winrate;
       } else {
         $scope.team2_roles[$scope.selected_index] = role;
         $scope.team2[$scope.selected_index] = champion_data;
+        $scope.team2_winrates[$scope.selected_index] = winrate;
       }
 
       $('#bestOptionPicker').modal('hide');
       $('#firstOptionPicker').modal('hide');
-      if ($scope.team1.length === 5 && $scope.team2.length === 5) $scope.allPicked = true;
+      if ($scope.team1.filter(function(val) { return val !== ''; }).length === 5
+          && $scope.team2.filter(function(val) { return val !== ''; }).length === 5) $scope.allPicked = true;
     } else {
       var championName = champion.role1;
       var winrate = champion.win_rate;
@@ -138,13 +160,16 @@ app.controller('champSelectCtrl', ['$scope', 'championFactory', 'matchupFactory'
         if ($scope.team === 1) {
           $scope.team1_roles[$scope.selected_index] = role;
           $scope.team1[$scope.selected_index] = champion_data;
+          $scope.team1_winrates[$scope.selected_index] = winrate;
         } else {
           $scope.team2_roles[$scope.selected_index] = role;
           $scope.team2[$scope.selected_index] = champion_data;
+          $scope.team2_winrates[$scope.selected_index] = winrate;
         }
         $('#bestOptionPicker').modal('hide');
         $('#firstOptionPicker').modal('hide');
-        if ($scope.team1.length === 5 && $scope.team2.length === 5) $scope.allPicked = true;
+        if ($scope.team1.filter(function(val) { return val !== ''; }).length === 5
+            && $scope.team2.filter(function(val) { return val !== ''; }).length === 5) $scope.allPicked = true;
       }, function(err) {
         $scope.status = err.message;
       });
