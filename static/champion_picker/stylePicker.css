@@ -91,3 +91,11 @@ select {
   font-size: 20;
   font-family: Georgia, serif;
 }
+
+#calc-winner {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 20px;
+  width: 150px;
+}

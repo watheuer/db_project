@@ -59,9 +59,14 @@ app.controller('champSelectCtrl', ['$scope', 'championFactory', 'matchupFactory'
   $scope.team2_roles = ['', '', '', '', ''];
   $scope.team1_bans = ['', '', ''];
   $scope.team2_bans = ['', '', ''];
+  $scope.team1_winrates = ['', '', '', '', ''];
+  $scope.team2_winrates = ['', '', '', '', ''];
 
   // hide all roles by default
   $scope.showAll = false;
+
+  // hide calculate button by default
+  $scope.allPicked = false;
 
   $scope.pickChampion = function(team, index) {
     // get best options, show that modal
@@ -116,6 +121,7 @@ app.controller('champSelectCtrl', ['$scope', 'championFactory', 'matchupFactory'
       }
       $('#bestOptionPicker').modal('hide');
       $('#firstOptionPicker').modal('hide');
+      if ($scope.team1.length === 5 && $scope.team2.length === 5) $scope.allPicked = true;
     } else {
       var championName;
       championName = champion.role1;
@@ -132,11 +138,11 @@ app.controller('champSelectCtrl', ['$scope', 'championFactory', 'matchupFactory'
         }
         $('#bestOptionPicker').modal('hide');
         $('#firstOptionPicker').modal('hide');
+        if ($scope.team1.length === 5 && $scope.team2.length === 5) $scope.allPicked = true;
       }, function(err) {
         $scope.status = err.message;
       });
     }
-
   }
 
   $scope.pickAnyChampion = function(team, index) {
