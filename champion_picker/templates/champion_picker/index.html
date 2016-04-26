@@ -32,7 +32,7 @@
         <div class="col-md-3 roles">
           <h3 class="page-header">Champion Roles:</h3>
           <div class="role" ng-repeat="role in roles">
-            <div>Role: {{ role.name }}</div>
+            <h5>{{ role.champion.name }} as {{ role.name }}</h5>
             <div>Win rate: {{ role.win_rate }}%</div>
             <div>Kills: {{ role.kills }}</div>
             <div>Deaths: {{ role.deaths }}</div>
