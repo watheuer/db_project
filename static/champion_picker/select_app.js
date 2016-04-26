@@ -53,15 +53,17 @@ app.factory('matchupFactory', ['$http', function($http) {
 app.controller('champSelectCtrl', ['$scope', 'championFactory', 'matchupFactory', function($scope, championFactory, matchupFactory) {
   getChampions();
 
-  $scope.team1 = ['', '', '', '', '']
-  $scope.team2 = ['', '', '', '', '']
-  $scope.team1_bans = ['', '', '']
-  $scope.team2_bans = ['', '', '']
+  $scope.team1 = ['', '', '', '', ''];
+  $scope.team2 = ['', '', '', '', ''];
+  $scope.team1_roles = ['', '', '', '', ''];
+  $scope.team2_roles = ['', '', '', '', ''];
+  $scope.team1_bans = ['', '', ''];
+  $scope.team2_bans = ['', '', ''];
 
   $scope.pickChampion = function(team, index) {
     // get best options, show that modal
     $scope.team = team;
-    $scope.index = index;
+    $scope.selected_index = index;
     
     var team1 = $scope.team1.filter(function(val) { return val !== ''; });
     var team2 = $scope.team2.filter(function(val) { return val !== ''; });
@@ -96,14 +98,18 @@ app.controller('champSelectCtrl', ['$scope', 'championFactory', 'matchupFactory'
     });
   };
 
-  $scope.selectChampion = function(champion) {
+  $scope.selectChampion = function(champion, role) {
     console.log(champion);
+    console.log(role);
+    console.log($scope.selected_index);
     if (typeof(champion.champion) !== 'undefined') {
       champion = champion.champion;
       if ($scope.team === 1) {
-        $scope.team1[$scope.index] = champion;
+        $scope.team1_roles[$scope.selected_index] = role;
+        $scope.team1[$scope.selected_index] = champion;
       } else {
-        $scope.team2[$scope.index] = champion;
+        $scope.team2_roles[$scope.selected_index] = role;
+        $scope.team2[$scope.selected_index] = champion;
       }
       $('#bestOptionPicker').modal('hide');
       $('#firstOptionPicker').modal('hide');
@@ -115,9 +121,11 @@ app.controller('champSelectCtrl', ['$scope', 'championFactory', 'matchupFactory'
       function(res) {
         champion = res.data;
         if ($scope.team === 1) {
-          $scope.team1[$scope.index] = champion;
+          $scope.team1_roles[$scope.selected_index] = role;
+          $scope.team1[$scope.selected_index] = champion;
         } else {
-          $scope.team2[$scope.index] = champion;
+          $scope.team2_roles[$scope.selected_index] = role;
+          $scope.team2[$scope.selected_index] = champion;
         }
         $('#bestOptionPicker').modal('hide');
         $('#firstOptionPicker').modal('hide');
@@ -130,15 +138,15 @@ app.controller('champSelectCtrl', ['$scope', 'championFactory', 'matchupFactory'
 
   $scope.pickAnyChampion = function(team, index) {
     $scope.team = team;
-    $scope.index = index;
+    $scope.selected_index = index;
     $('#champPicker').modal('show'); 
   };
 
   $scope.banChampion = function(champion) {
     if ($scope.team === 1) {
-      $scope.team1_bans[$scope.index] = champion;
+      $scope.team1_bans[$scope.selected_index] = champion;
     } else {
-      $scope.team2_bans[$scope.index] = champion;
+      $scope.team2_bans[$scope.selected_index] = champion;
     }
     $('#champPicker').modal('hide'); 
   };
