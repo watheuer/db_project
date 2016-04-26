@@ -11,6 +11,11 @@ class Champion(models.Model):
     e_skill = models.CharField(max_length=32)
     r_skill = models.CharField(max_length=32)
     # other shit like the image
+
+    def get_roles(self):
+        roles = Role.objects.filter(champion=self)
+        return roles
+
     def __str__(self):
         return self.name
 
