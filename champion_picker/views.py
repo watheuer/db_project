@@ -49,7 +49,7 @@ def get_matchup(request):
     for b in bans:
         rel_champ = Champion.objects.get(name=b)
         current_ban = Role.objects.filter(champion=rel_champ)
-        print("INITIAL BAN - CHAMPION " + str(rel_champ.name) + " SQL: " + str(current_ban.query))
+        # print("INITIAL BAN - CHAMPION " + str(rel_champ.name) + " SQL: " + str(current_ban.query))
         for c in current_ban:
             banned_roles.append(c)
 
