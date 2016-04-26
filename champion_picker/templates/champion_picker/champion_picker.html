@@ -78,7 +78,6 @@
         <div class="modal-content">
           <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <h4 class="modal-title" id="campPickerLabel">Pick a Champion</h4>
             <label>Search champions: <input ng-model="searchText"></label>
           </div>
           <div class="modal-body champions">
@@ -100,7 +99,6 @@
         <div class="modal-content">
           <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <h4 class="modal-title" id="bestOptionPickerLabel">Pick a Champion</h4>
             <label>Search champions: <input ng-model="searchText"></label>
           </div>
           <div class="modal-body champions">
@@ -136,11 +134,10 @@
         <div class="modal-content">
           <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <h4 class="modal-title" id="firstOptionPickerLabel">Pick a Champion</h4>
             <label>Search champions: <input ng-model="searchText"></label>
           </div>
           <div class="modal-body champions">
-              <div class="champion-details" ng-repeat="role in bestPicks | filter:searchText" ng-click="selectChampion(role, role.name)">
+              <div class="champion-details" ng-repeat="role in firstBestPicks | filter:searchText" ng-click="selectChampion(role, role.name)">
                 <div class="row">
                   <div class="col-md-2">
                     <div style="text-align: center">{{ role.champion.name }} - {{ role.name }}</div>
@@ -155,6 +152,24 @@
                   </div>
                 </div>
               </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="winners" tabindex="-1" role="dialog">
+      <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="winnerLabel">Winner: {{ winner }}</h4>
+            <label>Search champions: <input ng-model="searchText"></label>
+          </div>
+          <div class="modal-body">
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
