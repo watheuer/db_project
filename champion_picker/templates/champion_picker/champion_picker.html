@@ -49,17 +49,7 @@
           </div>
           <div class="col-md-4">
           <div class="RoleLabel">
-            <form>
-              <fieldset>
-                <p>
-                  <label> Role </label>
-                  <select>
-                    <option value="0">-----------</option>
-                    <option value="{{ role.name }}" ng-repeat="role in champion.roles">{{ role.name }}</option>
-                  </select>
-                </p>
-              </fieldset>
-            </form>
+            Role: <span ng-show="typeof(champion) !== 'undefined'">{{ team1_roles[$index] }}</span>
           </div>
           </div>
         </div>
@@ -75,17 +65,7 @@
           </div>
           <div class="col-md-4">
           <div class="RoleLabel">
-            <form>
-              <fieldset>
-                <p>
-                  <label> Role </label>
-                  <select>
-                    <option value="0">-----------</option>
-                    <option value="{{ role.name }}" ng-repeat="role in champion.roles">{{ role.name }}</option>
-                  </select>
-                </p>
-              </fieldset>
-            </form>
+            Role: <span ng-show="typeof(champion) !== 'undefined'">{{ team2_roles[$index] }}</span>
           </div>
           </div>
         </div>
@@ -124,10 +104,10 @@
           <div class="modal-body champions">
             <div ng-repeat="(opponent, champions) in bestPicks">
               <h4>Counters for {{ opponent }}</h4>
-              <div class="champion-details" ng-repeat="champion in champions" ng-click="selectChampion(champion)">
+              <div class="champion-details" ng-repeat="champion in champions" ng-click="selectChampion(champion, champion.role_name)">
                 <div class="row">
                   <div class="col-md-2">
-                    <div style="text-align: center">{{ champion.role1 }}</div>
+                    <div style="text-align: center">{{ champion.role1 }} - {{ champion.role_name }}</div>
                     <img src="{{ champion.portrait }}" height="75%">
                   </div>
                   <div class="col-md-10">
@@ -157,10 +137,21 @@
             <h4 class="modal-title" id="firstOptionPickerLabel">Pick a Champion</h4>
           </div>
           <div class="modal-body champions">
-            <div class="champion"  ng-repeat="role in bestPicks" ng-click="selectChampion(role)">
-                <div style="text-align: center">{{ role.champion.name }}</div>
-                <img src="{{ role.champion.portrait_image }}" width="100%" height="75%">
-            </div>
+              <div class="champion-details" ng-repeat="role in bestPicks" ng-click="selectChampion(role, role.name)">
+                <div class="row">
+                  <div class="col-md-2">
+                    <div style="text-align: center">{{ role.champion.name }} - {{ role.name }}</div>
+                    <img src="{{ role.champion.portrait_image }}" height="75%">
+                  </div>
+                  <div class="col-md-10">
+                    <br>
+                    <div>Win rate: {{ role.win_rate }}</div>
+                    <div>Kills: {{ role.kills }}</div>
+                    <div>Deaths: {{ role.deaths }}</div>
+                    <div>Assists: {{ role.assists}}</div>
+                  </div>
+                </div>
+              </div>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
