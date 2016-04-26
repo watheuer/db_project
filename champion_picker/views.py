@@ -53,19 +53,19 @@ def get_matchup(request):
         for c in current_ban:
             banned_roles.append(c)
 
-    if len(team_one_str) == 0 and len(team_two_str) == 0:
-        if len(bans) == 0:
-            all_roles = Role.objects.all()
-            serializer = RoleSerializer(all_roles, many=True)
-            return HttpResponse(json.dumps(serializer.data))
-        else:
-            all_roles = Role.objects.filter(~Q(role1__in=banned_roles))
-            serializer = RoleSerializer(all_roles, many=True)
-            return HttpResponse(json.dumps(serializer.data))
 
     team_one = []
     team_two = []
     if turn == 1:
+        if len(team_two_str) == 0:
+            if len(bans) == 0:
+                all_roles = Role.objects.all()
+                serializer = RoleSerializer(all_roles, many=True)
+                return HttpResponse(json.dumps(serializer.data))
+            else:
+                all_roles = Role.objects.filter(~Q(role1__in=banned_roles))
+                serializer = RoleSerializer(all_roles, many=True)
+                return HttpResponse(json.dumps(serializer.data))
         for champ in team_one_str:
             tc = Champion.objects.get(name=champ)
             roles_for_champ = Role.objects.filter(champion=tc)
@@ -91,6 +91,15 @@ def get_matchup(request):
             team_matchups.append(best_matchups)
             print(str(current_role) + ": " + str(best_matchups))
     elif turn == 2:
+        if len(team_one_str) == 0:
+            if len(bans) == 0:
+                all_roles = Role.objects.all()
+                serializer = RoleSerializer(all_roles, many=True)
+                return HttpResponse(json.dumps(serializer.data))
+            else:
+                all_roles = Role.objects.filter(~Q(role1__in=banned_roles))
+                serializer = RoleSerializer(all_roles, many=True)
+                return HttpResponse(json.dumps(serializer.data))
         for champ in team_one_str:
             tc = Champion.objects.get(name=champ)
             roles_for_champ = Role.objects.filter(champion=tc)
@@ -119,7 +128,9 @@ def get_matchup(request):
         entry_line = []
         srole = ""
         for c in m:
-            entry_line.append({"role_name": c.role1.name, "role1": c.role1.champion.name, "role2": c.role2.champion.name, "portrait": c.role1.champion.portrait_image.name, "win_rate": float(c.win_rate), "kills": int(c.role1.kills), "deaths": int(c.role1.deaths)})
+            entry_line.append({"role_name": c.role1.name, "role1": c.role1.champion.name, "role2": c.role2.champion.name,
+                               "portrait": c.role1.champion.portrait_image.name,
+                               "win_rate": float(c.win_rate), "kills": int(c.role1.kills), "deaths": int(c.role1.deaths), "assists": int(c.role1.assists)})
             srole = str(c.role2.champion.name) + " as " + str(c.role2.name) 
         final_data[str(srole)] = entry_line
 
