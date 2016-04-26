@@ -63,7 +63,10 @@ def get_matchup(request):
                 serializer = RoleSerializer(all_roles, many=True)
                 return HttpResponse(json.dumps(serializer.data))
             else:
-                all_roles = Role.objects.filter(~Q(role1__in=banned_roles))
+                bnames = []
+                for b in banned_roles:
+                    bnames.append(b.champion.name)
+                all_roles = Role.objects.filter(~Q(champion__name__in=bnames))
                 serializer = RoleSerializer(all_roles, many=True)
                 return HttpResponse(json.dumps(serializer.data))
         for champ in team_one_str:
@@ -97,7 +100,10 @@ def get_matchup(request):
                 serializer = RoleSerializer(all_roles, many=True)
                 return HttpResponse(json.dumps(serializer.data))
             else:
-                all_roles = Role.objects.filter(~Q(role1__in=banned_roles))
+                bnames = []
+                for b in banned_roles:
+                    bnames.append(b.champion.name)
+                all_roles = Role.objects.filter(~Q(champion__name__in=bnames))
                 serializer = RoleSerializer(all_roles, many=True)
                 return HttpResponse(json.dumps(serializer.data))
         for champ in team_one_str:
