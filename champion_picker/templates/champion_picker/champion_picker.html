@@ -79,9 +79,10 @@
           <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
             <h4 class="modal-title" id="campPickerLabel">Pick a Champion</h4>
+            <label>Search champions: <input ng-model="searchText"></label>
           </div>
           <div class="modal-body champions">
-            <div class="champion"  ng-repeat="champion in champions" ng-click="banChampion(champion)">
+            <div class="champion"  ng-repeat="champion in champions | filter:searchText" ng-click="banChampion(champion)">
                 <div style="text-align: center">{{ champion.name }}</div>
                 <img src="{{ champion.portrait_image }}" width="100%" height="75%">
             </div>
@@ -100,11 +101,12 @@
           <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
             <h4 class="modal-title" id="bestOptionPickerLabel">Pick a Champion</h4>
+            <label>Search champions: <input ng-model="searchText"></label>
           </div>
           <div class="modal-body champions">
             <div ng-repeat="(opponent, champions) in bestPicks">
-              <h4>Counters for {{ opponent }}</h4>
-              <div class="champion-details" ng-repeat="champion in champions" ng-click="selectChampion(champion, champion.role_name)">
+              <h3>Counters for {{ opponent }} <span ng-show="opponent == 'All'" style="cursor: pointer" ng-click="showAll = !showAll">(expand)</span></h3>
+              <div class="champion-details" ng-repeat="champion in champions | filter:searchText" ng-click="selectChampion(champion, champion.role_name)" ng-show="opponent != 'All' || showAll">
                 <div class="row">
                   <div class="col-md-2">
                     <div style="text-align: center">{{ champion.role1 }} - {{ champion.role_name }}</div>
@@ -135,9 +137,10 @@
           <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
             <h4 class="modal-title" id="firstOptionPickerLabel">Pick a Champion</h4>
+            <label>Search champions: <input ng-model="searchText"></label>
           </div>
           <div class="modal-body champions">
-              <div class="champion-details" ng-repeat="role in bestPicks" ng-click="selectChampion(role, role.name)">
+              <div class="champion-details" ng-repeat="role in bestPicks | filter:searchText" ng-click="selectChampion(role, role.name)">
                 <div class="row">
                   <div class="col-md-2">
                     <div style="text-align: center">{{ role.champion.name }} - {{ role.name }}</div>

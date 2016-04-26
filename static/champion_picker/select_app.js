@@ -60,6 +60,9 @@ app.controller('champSelectCtrl', ['$scope', 'championFactory', 'matchupFactory'
   $scope.team1_bans = ['', '', ''];
   $scope.team2_bans = ['', '', ''];
 
+  // hide all roles by default
+  $scope.showAll = false;
+
   $scope.pickChampion = function(team, index) {
     // get best options, show that modal
     $scope.team = team;
