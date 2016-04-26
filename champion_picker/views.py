@@ -55,11 +55,13 @@ def get_matchup(request):
 
     if len(team_one_str) == 0 and len(team_two_str) == 0:
         if len(bans) == 0:
-            data_arr = []
             all_roles = Role.objects.all()
-            for ar in all_roles:
-                data_arr.append({"name": ar.name, "champion": ar.champion.name})
-            return HttpResponse("")
+            serializer = RoleSerializer(all_roles, many=True)
+            return HttpResponse(json.dumps(serializer.data))
+        else:
+            all_roles = Role.objects.filter(~Q(role1__in=banned_roles))
+            serializer = RoleSerializer(all_roles, many=True)
+            return HttpResponse(json.dumps(serializer.data))
 
     team_one = []
     team_two = []
