@@ -85,20 +85,47 @@ app.controller('champSelectCtrl', ['$scope', 'championFactory', 'matchupFactory'
 
     matchupFactory.postState(team1_names, team2_names, ban_names, team).then(function (res) {
       $scope.bestPicks = res.data;
+      console.log($scope.team);
+      if (($scope.team === 1 && team2_names.length === 0) || ($scope.team === 2 && team1_names.length === 0)) {
+        $('#firstOptionPicker').modal('show');
+      } else {
+        $('#bestOptionPicker').modal('show');
+      }
     }, function (err) {
       $scope.status = 'Error loading data: ' + err.message;
     });
-
-    $('#bestOptionPicker').modal('show');
   };
 
   $scope.selectChampion = function(champion) {
-    if ($scope.team === 1) {
-      $scope.team1[$scope.index] = champion;
+    console.log(champion);
+    if (typeof(champion.champion) !== 'undefined') {
+      champion = champion.champion;
+      if ($scope.team === 1) {
+        $scope.team1[$scope.index] = champion;
+      } else {
+        $scope.team2[$scope.index] = champion;
+      }
+      $('#bestOptionPicker').modal('hide');
+      $('#firstOptionPicker').modal('hide');
     } else {
-      $scope.team2[$scope.index] = champion;
+      var championName;
+      championName = champion.role1;
+
+      championFactory.getChampion(championName).then(
+      function(res) {
+        champion = res.data;
+        if ($scope.team === 1) {
+          $scope.team1[$scope.index] = champion;
+        } else {
+          $scope.team2[$scope.index] = champion;
+        }
+        $('#bestOptionPicker').modal('hide');
+        $('#firstOptionPicker').modal('hide');
+      }, function(err) {
+        $scope.status = err.message;
+      });
     }
-    $('#bestOptionPicker').modal('hide');
+
   }
 
   $scope.pickAnyChampion = function(team, index) {

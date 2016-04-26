@@ -120,14 +120,21 @@
             <h4 class="modal-title" id="bestOptionPickerLabel">Pick a Champion</h4>
           </div>
           <div class="modal-body champions">
-            <div class="champion-details"  ng-repeat="champion in bestPicks" ng-click="selectChampion(champion)">
-              <div class="row">
-                <div class="col-md-2">
-                    <div style="text-align: center">{{ champion.name }}</div>
-                    <img style="text-align: center" src="{{ champion.portrait_image }}" height="75%">
-                </div>
-                <div class="col-md-10">
-                  STATSSSS
+            <div ng-repeat="(opponent, champions) in bestPicks">
+              <h4>Counters for {{ opponent }}</h4>
+              <div class="champion-details" ng-repeat="champion in champions" ng-click="selectChampion(champion)">
+                <div class="row">
+                  <div class="col-md-2">
+                    <div style="text-align: center">{{ champion.role1 }}</div>
+                    <img src="{{ champion.portrait }}" height="75%">
+                  </div>
+                  <div class="col-md-10">
+                    <br>
+                    <div>Win rate: {{ champion.win_rate }}</div>
+                    <div>Kills: {{ champion.kills }}</div>
+                    <div>Deaths: {{ champion.deaths }}</div>
+                    <div>Assists: {{ champion.assists}}</div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -139,5 +146,25 @@
       </div>
     </div>
 
+    <!-- Modal -->
+    <div class="modal fade" id="firstOptionPicker" tabindex="-1" role="dialog">
+      <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="firstOptionPickerLabel">Pick a Champion</h4>
+          </div>
+          <div class="modal-body champions">
+            <div class="champion"  ng-repeat="role in bestPicks" ng-click="selectChampion(role)">
+                <div style="text-align: center">{{ role.champion.name }}</div>
+                <img src="{{ role.champion.portrait_image }}" width="100%" height="75%">
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
   </body>
 </html>
