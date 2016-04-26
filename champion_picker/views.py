@@ -143,7 +143,7 @@ def get_matchup(request):
     for a in all_r:
         all_arr.append({"role_name": a.name, "role1": a.champion.name,
                         "portrait": a.champion.portrait_image.name,
-                        "win_rate": float(a.win_rate)})
+                        "win_rate": float(a.win_rate), "kills": int(a.kills), "deaths": int(a.deaths), "assists": int(a.assists) })
     final_data["All"] = all_arr
 
     return HttpResponse(json.dumps(final_data))
