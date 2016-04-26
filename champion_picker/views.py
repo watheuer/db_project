@@ -38,6 +38,8 @@ def get_matchup(request):
     team_one_str = request_data["team1"]
     team_two_str = request_data["team2"]
 
+
+
     team_matchups = []
 
     banned_roles = []
@@ -50,6 +52,14 @@ def get_matchup(request):
         print("INITIAL BAN - CHAMPION " + str(rel_champ.name) + " SQL: " + str(current_ban.query))
         for c in current_ban:
             banned_roles.append(c)
+
+    if len(team_one_str) == 0 and len(team_two_str) == 0:
+        if len(bans) == 0:
+            data_arr = []
+            all_roles = Role.objects.all()
+            for ar in all_roles:
+                data_arr.append({"name": ar.name, "champion": ar.champion.name})
+            return HttpResponse("")
 
     team_one = []
     team_two = []
@@ -107,7 +117,7 @@ def get_matchup(request):
         entry_line = []
         srole = ""
         for c in m:
-            entry_line.append({"role_name": c.role1.name, "role1": c.role1.champion.name, "role2": c.role2.champion.name, "portrait": c.role1.champion.portrait_image.name, "win_rate": float(c.win_rate)})
+            entry_line.append({"role_name": c.role1.name, "role1": c.role1.champion.name, "role2": c.role2.champion.name, "portrait": c.role1.champion.portrait_image.name, "win_rate": float(c.win_rate), "kills": int(c.role1.kills), "deaths": int(c.role1.deaths)})
             srole = str(c.role2.champion.name) + " as " + str(c.role2.name) 
         final_data[str(srole)] = entry_line
 
