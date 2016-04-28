@@ -6,8 +6,8 @@ if [ ! -d "env" ]; then
 	pip install -I Django==1.9.2
 	pip install django-import-export
 	pip install djangorestframework
-	pip freeze
+	python manage.py runserver 0.0.0.0:8085
 else
 	source env/bin/activate
-	pip freeze
+	python manage.py runserver 0.0.0.0:8085
 fi
