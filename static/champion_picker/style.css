@@ -1,3 +1,6 @@
+/* The CSS file used to style the Champions page */
+
+/* The main champion block with the name and image */
 .champion {
   display: inline-block;
   width: 125px;
@@ -12,6 +15,7 @@
   font-family: Georgia, serif;
 } 
 
+/* Alternative champion block used for team builder */
 .champion-vertical {
   display: block;
   width: 100px;
@@ -23,25 +27,30 @@
   border-radius: 5px;
 }
 
+/* Alternative champion block used for team builder, change color on hover */
 .champion-vertical:hover {
   background-color: gray;
 }
 
+/* Alternative champion block used for team builder */
 .champion-details {
   height: 150px;
   padding: 10px;
   cursor: pointer;
 }
 
+/* Alternative champion block used for team builder, change color on hover */
 .champion-details:hover {
   background-color: gray;
 }
 
+/* The main champion block with the name and image, change color on hover */
 .champion:hover {
   background-color: white;
   color: black;
 }
 
+/* block containing role information displayed when champion is selected */
 .role {
   margin-bottom: 10px;
   display: inline-block;
@@ -54,27 +63,31 @@
   font-family: Georgia, serif;
 }
 
+/* block containing role information, increase in font size when hovered */
 .role:hover {
   font-size: 20;
   width: 200px;
 }
 
+/*style for block containing the grid of champions */
 .champions {
   max-height: 800px;
   overflow-y: scroll;
 }
 
+/* default text color */
 .page-header {
   color: white;
 }
 
+/* navbar settings  */
 .navbar {
   background-color: white;
   color: black;
   font-family: Georgia, serif;
 }
 
-
+/* setting background image */
 body {
   background: url('index2.jpg') center no-repeat;
 }
