@@ -34,7 +34,18 @@ app.factory('roleFactory', ['$http', function($http) {
   return factory;
 }]);
 
-app.controller('champInfoCtrl', ['$scope', 'championFactory', function($scope, championFactory) {
+app.factory('buildFactory', ['$http', function($http) {
+  var urlBase = '/api/builds/';
+  var factory = {};
+
+  factory.getBuilds = function(id) {
+    return $http.get(urlBase + id + '/');
+  };
+
+  return factory;
+}]);
+
+app.controller('champInfoCtrl', ['$scope', 'championFactory', 'buildFactory', function($scope, championFactory, buildFactory) {
   getChampions();
   $scope.selected = '';
 
@@ -44,6 +55,18 @@ app.controller('champInfoCtrl', ['$scope', 'championFactory', function($scope, c
       getRoles($scope.selected.name);
     }
   };
+
+  $scope.getBuilds = function(role) {
+    $scope.selected_role = role;
+    buildFactory.getBuilds(role.id)
+      .then(function(res) {
+        $scope.builds = res.data;
+        $('#builds').modal('show');
+        console.log($scope.build);
+      }, function(err) {
+        $scope.status = 'Error loading data.';
+      })
+  }
 
   function getChampions() {
     championFactory.getChampions()

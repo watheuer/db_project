@@ -91,3 +91,8 @@
 body {
   background: url('index2.jpg') center no-repeat;
 }
+
+.build {
+  cursor: pointer;
+  color: lightblue;
+}

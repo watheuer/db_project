@@ -3,6 +3,8 @@
     <title>WinLoL</title>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular.min.js"></script>
     <script src="/static/champion_picker/app.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" type="text/css">
     <link rel="stylesheet" href="/static/champion_picker/style.css" type="text/css">
   </head>
@@ -38,6 +40,30 @@
             <div>Deaths: {{ role.deaths }}</div>
             <div>Assists: {{ role.assists }}</div>
             <div>Minions killed: {{ role.minions_killed }}</div>
+            <div class="build" ng-click="getBuilds(role)">Show item builds</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="builds" tabindex="-1" role="dialog">
+      <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="buildsLabel">Builds for {{ selected_role.champion.name }} as {{ selected_role.name }}</h4>
+          </div>
+          <div class="modal-body">
+              <div ng-repeat="build in builds">
+                  <h3>{{ build.name }}</h3>
+                  <div ng-repeat="item in build.items">
+                      <h4>item.name</h4>
+                  <div>
+              </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
           </div>
         </div>
       </div>

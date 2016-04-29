@@ -217,13 +217,14 @@ class BuildViewSet(viewsets.ViewSet):
     """
     queryset = ItemBuild.objects.all()
 
-    def list(self, request):
+    def list(self, request, pk):
         queryset = self.queryset.all()
         serializer = BuildSerializer(queryset, many=True)
         return Response(serializer.data)
 
     def retrieve(self, request, pk=None):
-        builds = self.queryset.filter(role_id=pk)
-        serializer = BuildSerializer(builds, many=True)
+        queryset = self.queryset.all()
+        build = get_object_or_404(queryset, pk=pk)
+        serializer = BuildSerializer(build)
         return Response(serializer.data)
 
