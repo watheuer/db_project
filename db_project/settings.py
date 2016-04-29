@@ -27,7 +27,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-DB_MODE = "sqlite"
+DB_MODE = "postgres"
 
 # Application definition
 

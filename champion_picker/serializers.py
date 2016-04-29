@@ -32,7 +32,7 @@ class ItemSerializer(serializers.ModelSerializer):
 
 class BuildSerializer(serializers.ModelSerializer):
     items = ItemSerializer(many=True)
-    champion = ChampionSerializer()
+    role = RoleSerializer()
 
     class Meta:
         model = ItemBuild
